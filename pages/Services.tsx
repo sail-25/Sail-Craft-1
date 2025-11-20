@@ -1,85 +1,100 @@
 import React from 'react';
-import { Section, AnimatedElement, Button, DisplayText } from '../components/UI';
-import { Megaphone, Monitor, PenTool, Cpu, Briefcase, HeartHandshake, Check } from 'lucide-react';
+import { Section, AnimatedElement, Button, DisplayText, Card } from '../components/UI';
+import { Megaphone, Monitor, PenTool, Cpu, Briefcase, HeartHandshake, Check, Bot } from 'lucide-react';
 
 const services = [
   {
     icon: Megaphone,
     title: "Digital Marketing",
     subtitle: "Impossible to Ignore",
-    desc: "Campaigns, content creation, social media, graphic design, marketing automation, advert and brand design, growth optimization."
+    desc: "We build campaigns that cut through the noise and connect directly with your audience.",
+    subServices: ["SEO & SEM", "Social Media Management", "Email Marketing Automation", "PPC Campaigns", "Content Strategy"]
   },
   {
     icon: Monitor,
-    title: "Technology Solutions",
+    title: "Tech Solutions",
     subtitle: "Works Harder Than You",
-    desc: "Custom software, responsive websites, AI-driven e-commerce, IT support, AI system implementation."
+    desc: "Robust, scalable digital infrastructure designed for performance and growth.",
+    subServices: ["Custom Web Development", "Mobile App Development", "E-commerce Platforms", "Cloud Infrastructure", "API Integrations"]
+  },
+  {
+    icon: Bot,
+    title: "AI for Enterprise",
+    subtitle: "Intelligent Scale",
+    desc: "Leverage artificial intelligence to automate workflows and predict market trends.",
+    subServices: ["Custom Chatbots", "Predictive Analytics", "Workflow Automation", "AI Strategy Consulting", "Data Processing"]
   },
   {
     icon: PenTool,
     title: "Creative Suite",
     subtitle: "Brand Life & Soul",
-    desc: "AI-driven content creation, brand design, social PR, influencer management, creative campaigns."
+    desc: "Visual identity that tells your story and leaves a lasting impression.",
+    subServices: ["Brand Identity Design", "UI/UX Design", "Motion Graphics", "Video Production", "Marketing Collateral"]
   },
   {
     icon: Cpu,
-    title: "Operational Ops",
+    title: "Operations",
     subtitle: "Smart, Fast, Lean",
-    desc: "Process optimization, workflow automation, resource management, efficiency audits, operational analytics."
+    desc: "Streamlining your business processes to minimize waste and maximize speed.",
+    subServices: ["Process Audits", "Tool Implementation", "Resource Planning", "Efficiency Workshops", "Tech Stack Optimization"]
   },
   {
     icon: Briefcase,
     title: "Business Dev",
     subtitle: "Ideas to Momentum",
-    desc: "Strategic planning, market analysis, partnership development, scaling strategies."
-  },
-  {
-    icon: HeartHandshake,
-    title: "CX Improvement",
-    subtitle: "Loyalty Engines",
-    desc: "AI-powered CRM, personalized support, real-time feedback, customer experience optimization."
+    desc: "Strategic planning to take your business from stability to scalability.",
+    subServices: ["Market Entry Strategy", "Partnership Development", "Sales Funnel Optimization", "Pitch Deck Creation", "Competitor Analysis"]
   }
 ];
 
 const Services: React.FC = () => {
   return (
-    <div className="bg-sail-offWhite">
+    <div className="bg-white">
       {/* Header */}
-      <Section className="pt-40 pb-20" grid>
+      <Section className="pt-40 pb-10" grid>
         <AnimatedElement>
             <DisplayText size="lg" className="text-sail-green mb-8">
                 EVERYTHING<br/>
-                <span className="text-sail-orange pl-10 md:pl-20 block">WITHOUT GUESSWORK</span>
+                <span className="text-sail-orange">WITHOUT GUESSWORK</span>
             </DisplayText>
-            <p className="text-xl text-slate-600 max-w-2xl font-medium">One partner. Every solution. Real outcomes.</p>
+            <p className="text-xl text-slate-600 max-w-2xl font-medium">
+                One partner. Every solution. Real outcomes. We don't just deliver services; we deliver engines for growth.
+            </p>
         </AnimatedElement>
       </Section>
 
-      {/* Service List */}
-      <Section className="!py-0">
-        <div className="space-y-4 mb-20">
+      {/* Service List - Grid with Wrapping Text */}
+      <Section className="!py-10">
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
             {services.map((service, i) => (
-                <AnimatedElement key={i} delay={i * 0.05}>
-                    <div className="group bg-white rounded-xl border border-gray-200 p-8 md:p-12 hover:border-sail-orange hover:shadow-lg transition-all duration-300 cursor-default">
-                        <div className="flex flex-col md:flex-row md:items-center gap-8">
-                            <div className="w-16 h-16 rounded-lg bg-sail-surface flex items-center justify-center text-sail-green group-hover:bg-sail-green group-hover:text-white transition-colors">
-                                <service.icon size={32} />
+                <AnimatedElement key={i} delay={i * 0.05} className="h-full">
+                    <div className="h-full group bg-white rounded-2xl border border-sail-green/10 p-8 hover:border-sail-orange hover:shadow-xl shadow-sail-green/5 transition-all duration-300 cursor-default flex flex-col">
+                        <div className="flex items-start justify-between mb-6">
+                            <div className="w-14 h-14 rounded-lg bg-sail-offWhite flex items-center justify-center text-sail-green group-hover:bg-sail-green group-hover:text-white transition-colors shrink-0">
+                                <service.icon size={28} />
                             </div>
-                            <div className="flex-1">
-                                <h3 className="text-3xl font-heading text-sail-green group-hover:text-sail-orange transition-colors mb-2">{service.title}</h3>
-                                <p className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">{service.subtitle}</p>
-                                <p className="text-slate-600 text-lg leading-relaxed">{service.desc}</p>
-                            </div>
-                            <div className="md:w-1/4 flex flex-col justify-center">
-                                <ul className="space-y-2">
-                                    {['Strategy', 'Execution', 'Analysis'].map((tag, idx) => (
-                                        <li key={idx} className="flex items-center text-sm text-slate-500">
-                                            <Check size={14} className="text-sail-orange mr-2" />
-                                            {tag}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <span className="text-xs font-bold uppercase tracking-widest text-sail-orange bg-sail-orange/5 px-3 py-1 rounded-full whitespace-normal text-center max-w-[50%]">
+                                {service.subtitle}
+                            </span>
+                        </div>
+                        
+                        <h3 className="text-3xl font-heading text-sail-green group-hover:text-sail-orange transition-colors mb-4 break-words">
+                            {service.title}
+                        </h3>
+                        <p className="text-slate-600 text-lg leading-relaxed mb-8 flex-grow break-words">
+                            {service.desc}
+                        </p>
+                        
+                        <div className="bg-sail-offWhite/50 rounded-xl p-6">
+                             <p className="font-bold text-sail-green mb-4 text-sm uppercase">Capabilities</p>
+                             <ul className="grid grid-cols-1 gap-3">
+                                {service.subServices.map((tag, idx) => (
+                                    <li key={idx} className="flex items-start text-sm text-slate-600 break-words">
+                                        <Check size={16} className="text-sail-orange mr-3 mt-0.5 shrink-0" />
+                                        <span>{tag}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </AnimatedElement>
@@ -87,9 +102,9 @@ const Services: React.FC = () => {
         </div>
       </Section>
 
-      <Section dark className="text-center">
+      <Section className="text-center border-t border-sail-green/5">
         <AnimatedElement>
-            <h2 className="text-5xl font-heading mb-8 text-white">Let’s Build Your Growth Engine</h2>
+            <h2 className="text-4xl md:text-5xl font-heading mb-8 text-sail-green">Let’s Build Your Growth Engine</h2>
             <Button to="/work-with-us" variant="primary" className="!px-12 !py-5 !text-lg">Launch Plan</Button>
         </AnimatedElement>
       </Section>

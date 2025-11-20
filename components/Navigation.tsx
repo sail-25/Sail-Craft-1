@@ -31,25 +31,25 @@ const Navigation: React.FC = () => {
     <>
       <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
         <div className={`pointer-events-auto transition-all duration-500 ease-[0.16,1,0.3,1] ${
-          scrolled ? 'w-full max-w-5xl' : 'w-full max-w-6xl'
+          scrolled ? 'w-full max-w-6xl' : 'w-full max-w-7xl'
         }`}>
           <div className={`
-            flex items-center justify-between px-6 py-3 
-            bg-white/90 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/5
+            flex items-center justify-between px-6 py-4 
+            bg-white/95 backdrop-blur-xl border border-sail-green/10 shadow-2xl shadow-sail-green/5
             rounded-2xl transition-all duration-300
           `}>
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
+            <Link to="/" className="flex items-center gap-3 group min-w-fit">
               <div className="p-2 bg-sail-green text-white rounded-lg group-hover:rotate-12 transition-transform duration-300">
                  <Anchor size={20} />
               </div>
               <span className="text-xl font-bold tracking-tight text-sail-green font-heading hidden sm:block">
-                SailCraft
+                SailCraft Solutions
               </span>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1 bg-sail-surface/50 p-1 rounded-xl">
+            <nav className="hidden md:flex items-center gap-1 bg-sail-offWhite p-1 rounded-xl mx-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -65,18 +65,18 @@ const Navigation: React.FC = () => {
               ))}
             </nav>
 
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-4 min-w-fit">
                 <Link to="/contact" className="text-sm font-bold text-sail-green hover:text-sail-orange transition-colors">
                     Contact
                 </Link>
-                <Button to="/work-with-us" variant="primary" className="!px-5 !py-2.5 !text-xs !rounded-lg">
+                <Button to="/work-with-us" variant="primary" className="!px-5 !py-2.5 !text-xs !rounded-lg shadow-none hover:shadow-lg">
                 Start Project
                 </Button>
             </div>
 
             {/* Mobile Toggle */}
             <button 
-              className="md:hidden p-2 text-sail-green bg-sail-surface rounded-lg"
+              className="md:hidden p-2 text-sail-green bg-sail-offWhite rounded-lg"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,7 +87,7 @@ const Navigation: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-sail-green z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
+        className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
           isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         }`}
       >
@@ -95,12 +95,12 @@ const Navigation: React.FC = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="text-4xl font-bold text-white hover:text-sail-orange transition-colors font-heading"
+              className="text-4xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading"
             >
               {link.name}
             </Link>
           ))}
-          <Link to="/contact" className="text-4xl font-bold text-white hover:text-sail-orange transition-colors font-heading">Contact</Link>
+          <Link to="/contact" className="text-4xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading">Contact</Link>
           <Button to="/work-with-us" variant="primary" className="mt-8 !text-xl !px-10 !py-4">
             Start Project
           </Button>
