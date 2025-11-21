@@ -20,14 +20,14 @@ export const Button: React.FC<ButtonProps> = ({
   className = '', 
   icon = false 
 }) => {
-  // Sharp architectural feel
-  const baseStyles = "inline-flex items-center justify-center px-8 py-4 text-sm font-bold tracking-wide transition-all duration-300 rounded-lg font-heading relative overflow-hidden group";
+  // Sharp architectural feel with added hover scale
+  const baseStyles = "inline-flex items-center justify-center px-8 py-4 text-sm font-bold tracking-wide transition-all duration-300 rounded-lg font-heading relative overflow-hidden group hover:scale-105 hover:shadow-xl transform-gpu";
   
   const variants = {
-    primary: "bg-sail-orange text-white hover:bg-orange-600 shadow-lg shadow-orange-900/10",
-    outline: "bg-transparent text-sail-green border border-sail-green/30 hover:border-sail-green hover:bg-sail-green/5",
-    white: "bg-white text-sail-green hover:bg-gray-50 shadow-sm border border-gray-200",
-    dark: "bg-sail-green text-white hover:bg-sail-darkGreen border border-transparent"
+    primary: "bg-sail-orange text-white hover:bg-sail-darkGreen shadow-lg shadow-sail-orange/20",
+    outline: "bg-transparent text-sail-green border border-sail-green/30 hover:bg-sail-green hover:text-white hover:border-sail-green",
+    white: "bg-white text-sail-green hover:bg-sail-offWhite shadow-sm border border-gray-200",
+    dark: "bg-sail-green text-white hover:bg-sail-orange border border-transparent"
   };
 
   const content = (
@@ -84,6 +84,42 @@ export const Section: React.FC<SectionProps> = ({
     </section>
   );
 };
+
+// New PageHero Component
+export const PageHero: React.FC<{
+  title: React.ReactNode;
+  subtitle?: string;
+  image: string;
+  children?: React.ReactNode;
+  className?: string;
+}> = ({ title, subtitle, image, children, className = "" }) => (
+  <section className={`relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden ${className}`}>
+    <div className="absolute inset-0 z-0">
+      <img
+        src={image}
+        className="w-full h-full object-cover opacity-25 md:opacity-30"
+        alt="Background"
+      />
+      {/* Sophisticated gradient overlays for text readability without hiding the image completely */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-sail-offWhite"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent"></div>
+    </div>
+    <div className="container mx-auto px-6 md:px-8 relative z-10">
+      <AnimatedElement>
+        {subtitle && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-sail-orange uppercase bg-sail-orange/10 rounded-full border border-sail-orange/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-sail-orange"></span>
+                {subtitle}
+            </div>
+        )}
+        <div className="max-w-4xl">
+            {title}
+        </div>
+        {children && <div className="mt-8">{children}</div>}
+      </AnimatedElement>
+    </div>
+  </section>
+);
 
 export const AnimatedElement: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = "" }) => (
   <motion.div

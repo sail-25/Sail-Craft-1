@@ -22,7 +22,7 @@ const App: React.FC = () => {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-sail-offWhite font-sans text-slate-800 overflow-x-hidden">
+      <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden">
         <Navigation />
         <main className="flex-grow">
           <Routes>
