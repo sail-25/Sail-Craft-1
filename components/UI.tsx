@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Plus, Minus } from 'lucide-react';
 
@@ -85,41 +85,74 @@ export const Section: React.FC<SectionProps> = ({
   );
 };
 
-// New PageHero Component
+// Parallax Helper Component
+export const Parallax: React.FC<{ children: React.ReactNode; offset?: number; className?: string }> = ({ children, offset = 50, className = "" }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [-offset, offset]);
+  
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }} className="w-full h-full">
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+// New PageHero Component with Parallax
 export const PageHero: React.FC<{
   title: React.ReactNode;
   subtitle?: string;
   image: string;
   children?: React.ReactNode;
   className?: string;
-}> = ({ title, subtitle, image, children, className = "" }) => (
-  <section className={`relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden ${className}`}>
-    <div className="absolute inset-0 z-0">
-      <img
-        src={image}
-        className="w-full h-full object-cover opacity-25 md:opacity-30"
-        alt="Background"
-      />
-      {/* Sophisticated gradient overlays for text readability without hiding the image completely */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-sail-offWhite"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent"></div>
-    </div>
-    <div className="container mx-auto px-6 md:px-8 relative z-10">
-      <AnimatedElement>
-        {subtitle && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-sail-orange uppercase bg-sail-orange/10 rounded-full border border-sail-orange/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-sail-orange"></span>
-                {subtitle}
-            </div>
-        )}
-        <div className="max-w-4xl">
-            {title}
+}> = ({ title, subtitle, image, children, className = "" }) => {
+  const { scrollY } = useScroll();
+  // Create a parallax effect for the background image
+  const y = useTransform(scrollY, [0, 500], [0, 200]);
+  
+  return (
+    <section className={`relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden ${className}`}>
+      <div className="absolute inset-0 z-0 h-[120%]">
+        <motion.div style={{ y }} className="w-full h-full">
+          <img
+            src={image}
+            className="w-full h-full object-cover opacity-10 md:opacity-15" // Decreased opacity
+            alt="Background"
+          />
+        </motion.div>
+        {/* Sophisticated gradient overlays for text readability without hiding the image completely */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-sail-offWhite"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        
+        {/* Subtle animated background blobs */}
+        <div className="absolute inset-0 overflow-hidden opacity-40">
+           <div className="absolute -top-20 -right-20 w-96 h-96 bg-sail-green/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+           <div className="absolute top-40 -left-20 w-72 h-72 bg-sail-orange/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
         </div>
-        {children && <div className="mt-8">{children}</div>}
-      </AnimatedElement>
-    </div>
-  </section>
-);
+      </div>
+      
+      <div className="container mx-auto px-6 md:px-8 relative z-10">
+        <AnimatedElement>
+          {subtitle && (
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-sail-orange uppercase bg-sail-orange/10 rounded-full border border-sail-orange/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sail-orange"></span>
+                  {subtitle}
+              </div>
+          )}
+          <div className="max-w-4xl">
+              {title}
+          </div>
+          {children && <div className="mt-8">{children}</div>}
+        </AnimatedElement>
+      </div>
+    </section>
+  );
+};
 
 export const AnimatedElement: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = "" }) => (
   <motion.div

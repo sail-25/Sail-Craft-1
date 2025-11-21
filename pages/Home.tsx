@@ -1,21 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Section, AnimatedElement, Button, DisplayText, Card } from '../components/UI';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Section, AnimatedElement, Button, DisplayText, Card, Parallax } from '../components/UI';
 import { ArrowRight, Zap, Play, Megaphone, Monitor, Bot, PenTool } from 'lucide-react';
 
 const Home: React.FC = () => {
+  const { scrollY } = useScroll();
+  const heroParallax = useTransform(scrollY, [0, 1000], [0, 300]);
+
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-white relative">
+      {/* Ambient Background Animation */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sail-orange/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-sail-green/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-32 left-1/3 w-[600px] h-[600px] bg-blue-100/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
       {/* Architectural Hero - Brutal & Clean */}
       <Section className="min-h-screen flex flex-col justify-center relative pt-32 md:pt-40 overflow-hidden" fullWidth>
-        <div className="absolute inset-0 z-0">
-            <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                className="w-full h-full object-cover opacity-20 md:opacity-30 select-none grayscale"
-                alt="Modern glass architecture"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white"></div>
+        <div className="absolute inset-0 z-0 h-[120%] -top-[10%]">
+            <motion.div style={{ y: heroParallax }} className="w-full h-full">
+                <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                    className="w-full h-full object-cover opacity-10 md:opacity-15 select-none grayscale"
+                    alt="Modern glass architecture"
+                />
+            </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -31,7 +44,7 @@ const Home: React.FC = () => {
                             <span className="text-sail-orange">POSSIBILITY</span>
                         </DisplayText>
                     </div>
-                    <div className="mt-8 lg:mt-4 max-w-md bg-white p-8 border border-black/5 shadow-xl shadow-black/5">
+                    <div className="mt-8 lg:mt-4 max-w-md bg-white p-8 border border-black/5 shadow-xl shadow-black/5 backdrop-blur-sm bg-white/80">
                         <p className="text-xl text-slate-700 font-bold leading-tight mb-8">
                             Strategy. Creativity. Technology. <br/>
                             We build the engines that drive modern business.
@@ -46,13 +59,15 @@ const Home: React.FC = () => {
 
             {/* Hero Visual Grid */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-8">
-                <AnimatedElement delay={0.2} className="md:col-span-8 relative group h-[400px] md:h-[500px] overflow-hidden">
-                    <div className="absolute inset-0 bg-sail-green/20 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
-                    <img 
-                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2301&q=80" 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                        alt="Corporate architecture interior"
-                    />
+                <AnimatedElement delay={0.2} className="md:col-span-8 relative group h-[400px] md:h-[500px] overflow-hidden rounded-lg">
+                    <div className="absolute inset-0 bg-sail-green/20 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
+                    <Parallax offset={30} className="h-full">
+                        <img 
+                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2301&q=80" 
+                            className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 -mt-[10%]"
+                            alt="Corporate architecture interior"
+                        />
+                    </Parallax>
                     <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-white/90 backdrop-blur-sm border-t border-black/5">
                         <div className="flex items-center justify-between">
                             <div>
@@ -67,15 +82,15 @@ const Home: React.FC = () => {
                 </AnimatedElement>
                 
                 <AnimatedElement delay={0.3} className="md:col-span-4 flex flex-col gap-6 h-[400px] md:h-[500px]">
-                    <div className="flex-1 bg-sail-green text-white p-8 flex flex-col justify-between relative overflow-hidden group">
-                         <div className="absolute top-0 right-0 w-32 h-32 bg-sail-orange/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-sail-orange/30 transition-colors duration-500"></div>
+                    <div className="flex-1 bg-sail-green text-white p-8 flex flex-col justify-between relative overflow-hidden group rounded-lg">
+                         <div className="absolute top-0 right-0 w-32 h-32 bg-sail-orange/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-sail-orange/30 transition-colors duration-500 animate-pulse"></div>
                          <Zap size={40} className="text-sail-orange mb-4 relative z-10" />
                          <div className="relative z-10">
                              <h3 className="text-6xl font-heading font-bold mb-2">200%</h3>
                              <p className="text-white/80 font-bold uppercase tracking-wide text-sm">Average client growth</p>
                          </div>
                     </div>
-                    <div className="flex-1 bg-white p-8 border border-black/10 flex flex-col justify-center hover:border-sail-orange transition-colors">
+                    <div className="flex-1 bg-white p-8 border border-black/10 flex flex-col justify-center hover:border-sail-orange transition-colors rounded-lg shadow-sm">
                          <h3 className="text-6xl font-heading text-sail-green mb-2 font-bold">50+</h3>
                          <p className="text-slate-500 font-bold uppercase tracking-wide text-sm">Enterprise Projects</p>
                     </div>
@@ -85,7 +100,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* Marquee Divider */}
-      <div className="bg-white py-12 overflow-hidden whitespace-nowrap border-y border-black/10">
+      <div className="bg-white py-12 overflow-hidden whitespace-nowrap border-y border-black/10 relative z-10">
         <div className="inline-block animate-marquee">
           {[1,2,3,4,5,6].map(i => (
              <span key={i} className="text-sail-green text-6xl font-heading mx-12 font-bold uppercase tracking-tighter">
@@ -96,7 +111,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Services Grid Section */}
-      <Section>
+      <Section className="relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20">
             <h2 className="text-5xl md:text-7xl font-bold text-sail-green font-heading mb-6 tracking-tight">SOLUTIONS FOR<br/>SCALE</h2>
             <p className="text-slate-600 text-xl mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -105,7 +120,7 @@ const Home: React.FC = () => {
             <Button to="/services" variant="outline" icon>View All Services</Button>
         </div>
             
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 shadow-xl shadow-black/5">
             {[
                 { icon: Megaphone, title: "Marketing", desc: "Data-driven growth strategies." },
                 { icon: Monitor, title: "Technology", desc: "Scalable web & app development." },
@@ -129,7 +144,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* Why Choose Us - Restored to Brutal White/Black */}
-      <Section className="py-32 border-t border-black/5">
+      <Section className="py-32 border-t border-black/5 relative z-10">
           <div className="grid md:grid-cols-2 gap-20 items-center">
               <AnimatedElement>
                   <h2 className="text-6xl md:text-8xl font-heading mb-12 leading-[0.9] text-sail-green tracking-tighter">
@@ -153,15 +168,17 @@ const Home: React.FC = () => {
                       ))}
                   </div>
               </AnimatedElement>
-              <AnimatedElement delay={0.2} className="relative h-full min-h-[600px]">
-                  <div className="absolute inset-0 bg-sail-green">
-                      <img 
-                        src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" 
-                        alt="Minimalist computer setup" 
-                        className="w-full h-full object-cover opacity-80 mix-blend-overlay grayscale contrast-125"
-                      />
+              <AnimatedElement delay={0.2} className="relative h-full min-h-[600px] overflow-hidden rounded-lg">
+                  <div className="absolute inset-0 bg-sail-green w-full h-full">
+                      <Parallax offset={40} className="w-full h-full">
+                        <img 
+                            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" 
+                            alt="Minimalist computer setup" 
+                            className="w-full h-[120%] object-cover opacity-80 mix-blend-overlay grayscale contrast-125 -mt-[10%]"
+                        />
+                      </Parallax>
                   </div>
-                  <div className="absolute bottom-8 left-8 right-8 bg-white p-8">
+                  <div className="absolute bottom-8 left-8 right-8 bg-white p-8 shadow-lg">
                       <p className="font-heading text-2xl font-bold text-sail-green">
                           "Design is not just what it looks like and feels like. Design is how it works."
                       </p>
@@ -171,11 +188,11 @@ const Home: React.FC = () => {
       </Section>
 
       {/* Process - Simple & Stark */}
-      <Section className="border-y border-black/10 py-20">
+      <Section className="border-y border-black/10 py-20 relative z-10 bg-white">
         <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {['Discovery', 'Strategy', 'Build', 'Launch', 'Scale'].map((step, i) => (
-                <div key={step} className="flex items-center">
-                    <span className="text-2xl md:text-4xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-sail-green to-sail-green/60 hover:to-sail-orange transition-all cursor-default">
+                <div key={step} className="flex items-center group">
+                    <span className="text-2xl md:text-4xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-sail-green to-sail-green/60 hover:to-sail-orange transition-all cursor-default group-hover:scale-105 transform duration-300">
                         {step}
                     </span>
                     {i < 4 && <span className="ml-4 md:ml-8 text-gray-300 text-2xl">/</span>}
@@ -185,14 +202,16 @@ const Home: React.FC = () => {
       </Section>
 
       {/* CTA - High Contrast */}
-      <Section fullWidth className="!p-0 bg-sail-green">
+      <Section fullWidth className="!p-0 bg-sail-green relative z-10">
           <div className="grid md:grid-cols-2 min-h-[500px]">
-              <div className="relative h-full min-h-[400px] order-2 md:order-1">
-                  <img 
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                    className="absolute inset-0 w-full h-full object-cover grayscale"
-                    alt="Team collaboration"
-                  />
+              <div className="relative h-full min-h-[400px] order-2 md:order-1 overflow-hidden">
+                  <Parallax offset={50} className="h-full w-full">
+                    <img 
+                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                        className="absolute inset-0 w-full h-[120%] object-cover grayscale -mt-[10%]"
+                        alt="Team collaboration"
+                    />
+                  </Parallax>
                    <div className="absolute inset-0 bg-sail-green/80 mix-blend-multiply"></div>
               </div>
               <div className="flex flex-col justify-center p-12 md:p-24 bg-white order-1 md:order-2">
