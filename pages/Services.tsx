@@ -68,12 +68,12 @@ const Services: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-20">
             {services.map((service, i) => (
                 <AnimatedElement key={i} delay={i * 0.05} className="h-full">
-                    <div className="h-full group bg-white rounded-2xl border border-sail-green/10 p-8 hover:border-sail-orange hover:shadow-xl shadow-sail-green/5 transition-all duration-300 cursor-default flex flex-col">
+                    <div className="h-full group bg-white rounded-2xl border border-sail-green/10 p-8 hover:border-sail-orange hover:shadow-2xl hover:shadow-sail-green/10 transition-all duration-300 ease-out cursor-default flex flex-col hover:-translate-y-2 hover:scale-[1.01]">
                         <div className="flex items-start justify-between mb-6">
-                            <div className="w-14 h-14 rounded-lg bg-sail-offWhite flex items-center justify-center text-sail-green group-hover:bg-sail-green group-hover:text-white transition-colors shrink-0">
+                            <div className="w-14 h-14 rounded-lg bg-sail-offWhite flex items-center justify-center text-sail-green group-hover:bg-sail-green group-hover:text-white transition-all duration-300 transform group-hover:rotate-12 group-hover:scale-110 shrink-0 shadow-sm group-hover:shadow-md">
                                 <service.icon size={28} />
                             </div>
-                            <span className="text-xs font-bold uppercase tracking-widest text-sail-orange bg-sail-orange/5 px-3 py-1 rounded-full whitespace-normal text-center max-w-[50%]">
+                            <span className="text-xs font-bold uppercase tracking-widest text-sail-orange bg-sail-orange/5 px-3 py-1 rounded-full whitespace-normal text-center max-w-[50%] border border-transparent group-hover:border-sail-orange/20 transition-colors">
                                 {service.subtitle}
                             </span>
                         </div>
@@ -85,12 +85,15 @@ const Services: React.FC = () => {
                             {service.desc}
                         </p>
                         
-                        <div className="bg-sail-offWhite/50 rounded-xl p-6">
-                             <p className="font-bold text-sail-green mb-4 text-sm uppercase">Capabilities</p>
+                        <div className="bg-sail-offWhite/50 rounded-xl p-6 group-hover:bg-white group-hover:shadow-inner transition-all duration-300">
+                             <p className="font-bold text-sail-green mb-4 text-sm uppercase flex items-center">
+                                Capabilities
+                                <span className="block h-px w-8 bg-sail-orange ml-3 scale-0 group-hover:scale-100 origin-left transition-transform duration-300"></span>
+                             </p>
                              <ul className="grid grid-cols-1 gap-3">
                                 {service.subServices.map((tag, idx) => (
                                     <li key={idx} className="flex items-start text-sm text-slate-600 break-words">
-                                        <Check size={16} className="text-sail-orange mr-3 mt-0.5 shrink-0" />
+                                        <Check size={16} className="text-sail-orange mr-3 mt-0.5 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
                                         <span>{tag}</span>
                                     </li>
                                 ))}
