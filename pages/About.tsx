@@ -1,14 +1,5 @@
 import React from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
-import { ArrowRight, Star, Shield, Zap, Users, Heart } from 'lucide-react';
-
-const values = [
-    { icon: Zap, title: 'Innovation', desc: 'We don\'t just follow trends; we forge new paths in the digital landscape.' },
-    { icon: Shield, title: 'Integrity', desc: 'Transparency in every pixel, every line of code, and every report.' },
-    { icon: Star, title: 'Excellence', desc: 'Good enough is never enough. We obsess over the details that matter.' },
-    { icon: Users, title: 'Collaboration', desc: 'Your team and ours, operating as a single, unified growth engine.' },
-    { icon: Heart, title: 'Centricity', desc: 'Every decision starts with the human experience at its core.' }
-];
 
 const About: React.FC = () => {
   return (
@@ -67,64 +58,39 @@ const About: React.FC = () => {
          </div>
       </div>
 
-      {/* Values - Standard Grid */}
+      {/* Values - Brutalist Box Grid */}
       <Section className="bg-white py-24">
         <div className="text-center mb-16 max-w-3xl mx-auto">
              <span className="text-sail-orange font-bold tracking-widest uppercase text-sm mb-2 block">Our DNA</span>
              <h2 className="text-4xl font-heading text-sail-green font-bold">The Principles We Live By</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {values.map((val, i) => (
-            <AnimatedElement key={val.title} delay={i * 0.1} className="h-full">
-                <Card className="h-full p-8 hover:shadow-lg transition-shadow">
-                    <val.icon className="w-10 h-10 text-sail-orange mb-6" />
-                    <h3 className="font-heading text-2xl text-sail-green font-bold mb-4">{val.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{val.desc}</p>
-                </Card>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-gray-200 border border-gray-200 shadow-lg shadow-black/5">
+          {['Innovation', 'Integrity', 'Excellence', 'Collaboration', 'Centricity'].map((val, i) => (
+            <AnimatedElement key={val} delay={i * 0.1} className="h-full">
+                <div className="bg-white aspect-square flex items-center justify-center p-4 hover:bg-sail-green hover:text-white transition-all duration-300 group cursor-default">
+                    <h3 className="font-heading text-xl md:text-2xl font-bold group-hover:scale-110 transition-transform">{val}</h3>
+                </div>
             </AnimatedElement>
           ))}
         </div>
       </Section>
       
-      {/* High-Impact Split CTA (Kept as requested) */}
-      <Section fullWidth className="!p-0 bg-sail-darkGreen text-white border-t border-white/10 overflow-hidden relative">
-         <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-center">
-            <span className="text-[20vw] font-heading font-bold text-white tracking-tighter">START</span>
-         </div>
-         
-         <div className="container mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
-             <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-                 <div className="lg:w-1/2 text-center lg:text-left">
-                     <AnimatedElement>
-                         <h2 className="text-5xl md:text-7xl font-heading font-bold mb-6 leading-[0.9]">
-                             Let’s Build Something<br/>
-                             <span className="text-sail-orange">That Matters.</span>
-                         </h2>
-                         <p className="text-xl text-white/70 max-w-lg leading-relaxed font-medium mx-auto lg:mx-0">
-                            Your vision deserves the best execution. Join hands with a team that cares about your growth as much as you do.
-                         </p>
-                     </AnimatedElement>
-                 </div>
-                 
-                 <div className="lg:w-1/2 flex flex-col items-center lg:items-end gap-6">
-                     <AnimatedElement delay={0.2} className="w-full max-w-md">
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-xl">
-                            <div className="flex flex-col gap-4">
-                                <Button to="/work-with-us" variant="primary" className="!w-full !py-5 !text-lg shadow-2xl shadow-black/50" icon>
-                                    Start Your Project
-                                </Button>
-                                <Button to="/contact" variant="white" className="!w-full !py-5 !text-lg">
-                                    Talk to an Expert
-                                </Button>
-                            </div>
-                            <p className="mt-6 text-center text-sm text-white/40 uppercase tracking-widest font-bold">
-                                No commitment required
-                            </p>
-                        </div>
-                     </AnimatedElement>
-                 </div>
-             </div>
+      {/* CTA - Clean & Professional */}
+      <Section className="bg-sail-offWhite py-32 border-t border-sail-green/5">
+         <div className="max-w-4xl mx-auto text-center">
+             <AnimatedElement>
+                 <h2 className="text-5xl md:text-6xl font-heading font-bold text-sail-green mb-8 tracking-tight leading-[1.1]">
+                     If You’re Serious About Growth, <br/>
+                     <span className="text-sail-orange">So Are We.</span>
+                 </h2>
+                 <p className="text-xl text-slate-600 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+                    Let’s build a plan that fits your goals, your market, and the future you want to create.
+                 </p>
+                 <Button to="/contact" variant="primary" className="!px-12 !py-5 !text-lg shadow-xl shadow-sail-orange/20 hover:shadow-sail-orange/40" icon>
+                    Launch My Growth Plan
+                 </Button>
+             </AnimatedElement>
          </div>
       </Section>
     </div>
