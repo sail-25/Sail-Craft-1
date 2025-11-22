@@ -9,12 +9,27 @@ import SuccessStories from './pages/SuccessStories';
 import WorkWithUs from './pages/WorkWithUs';
 import Contact from './pages/Contact';
 
-// Scroll to top on route change
+// Scroll to top on route change, handling hash links for anchors
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
+    // Always scroll to top first to reset position
     window.scrollTo(0, 0);
-  }, [pathname]);
+
+    // If there is a hash, attempt to scroll to the element
+    if (hash) {
+      const id = hash.replace('#', '');
+      // Small timeout ensures the DOM is rendered before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [pathname, hash]);
+
   return null;
 };
 

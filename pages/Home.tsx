@@ -131,22 +131,24 @@ const Home: React.FC = () => {
             
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 shadow-xl shadow-black/5">
             {[
-                { icon: Megaphone, title: "Marketing", desc: "Data-driven growth strategies." },
-                { icon: Monitor, title: "Technology", desc: "Scalable web & app development." },
-                { icon: Bot, title: "AI Solutions", desc: "Automation & predictive models." },
-                { icon: PenTool, title: "Branding", desc: "Identity and visual systems." }
+                { id: 'marketing', icon: Megaphone, title: "Marketing", desc: "Data-driven growth strategies." },
+                { id: 'tech', icon: Monitor, title: "Technology", desc: "Scalable web & app development." },
+                { id: 'ai', icon: Bot, title: "AI Solutions", desc: "Automation & predictive models." },
+                { id: 'creative', icon: PenTool, title: "Branding", desc: "Identity and visual systems." }
             ].map((s, i) => (
                 <AnimatedElement key={i} delay={i * 0.1} className="h-full">
-                    <div className="bg-white p-10 h-full hover:bg-sail-green hover:text-white group transition-colors duration-300 flex flex-col justify-between">
-                        <div>
-                            <s.icon size={32} className="text-sail-orange mb-8 group-hover:text-white transition-colors" />
-                            <h3 className="text-3xl font-heading font-bold mb-4">{s.title}</h3>
-                            <p className="text-slate-500 group-hover:text-white/80 mb-8 text-lg leading-tight">{s.desc}</p>
+                    <Link to={`/services#${s.id}`} className="block h-full">
+                        <div className="bg-white p-10 h-full hover:bg-sail-green hover:text-white group transition-colors duration-300 flex flex-col justify-between">
+                            <div>
+                                <s.icon size={32} className="text-sail-orange mb-8 group-hover:text-white transition-colors" />
+                                <h3 className="text-3xl font-heading font-bold mb-4">{s.title}</h3>
+                                <p className="text-slate-500 group-hover:text-white/80 mb-8 text-lg leading-tight">{s.desc}</p>
+                            </div>
+                            <span className="font-bold text-sm flex items-center text-sail-green group-hover:text-white transition-colors uppercase tracking-widest">
+                                Explore <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                            </span>
                         </div>
-                        <span className="font-bold text-sm flex items-center text-sail-green group-hover:text-white transition-colors uppercase tracking-widest">
-                            Explore <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
-                        </span>
-                    </div>
+                    </Link>
                 </AnimatedElement>
             ))}
         </div>

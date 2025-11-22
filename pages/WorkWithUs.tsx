@@ -1,6 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Section, AnimatedElement, Button, DisplayText, PageHero } from '../components/UI';
-import { Rocket, TrendingUp, Briefcase, Search, Compass, Code, Zap, BarChart3, ArrowRight } from 'lucide-react';
+import { Rocket, TrendingUp, Briefcase, ArrowRight } from 'lucide-react';
 
 const WorkWithUs: React.FC = () => {
   
@@ -69,31 +70,88 @@ const WorkWithUs: React.FC = () => {
         </div>
       </Section>
 
-      {/* Process Grid - Static & Brutal */}
+      {/* Process Grid - Animated */}
       <Section id="process" className="py-24 border-t border-black/5">
          <div className="text-center max-w-3xl mx-auto mb-20">
             <DisplayText size="md" className="text-sail-green mb-4">THE PROCESS</DisplayText>
             <p className="text-slate-600 text-lg">A transparent path from concept to market dominance.</p>
          </div>
 
-         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+         <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-10%" }}
+            variants={{
+                visible: { transition: { staggerChildren: 0.15 } }
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+         >
              {steps.map((step, index) => (
-                 <AnimatedElement key={step.id} delay={index * 0.1}>
-                     <div className="border-t-4 border-sail-green pt-6 group hover:border-sail-orange transition-colors">
-                         <span className="text-4xl font-heading font-bold text-gray-200 mb-4 block group-hover:text-sail-orange transition-colors">{step.id}</span>
-                         <h3 className="text-2xl font-heading font-bold text-sail-green mb-3">{step.title}</h3>
-                         <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+                 <motion.div 
+                    key={step.id} 
+                    variants={{
+                        hidden: { opacity: 0, y: 50 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                    }}
+                    className="relative group h-full"
+                 >
+                     {/* Card Container */}
+                     <div className="h-full flex flex-col pt-6 px-4 pb-8 rounded-xl transition-all duration-500 hover:shadow-2xl hover:shadow-sail-green/5 bg-white border border-transparent hover:border-gray-100 relative overflow-hidden">
+                         
+                         {/* Animated Progress Bar Top */}
+                         <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 rounded-t-xl overflow-hidden">
+                             <motion.div 
+                                initial={{ width: 0 }}
+                                whileInView={{ width: "100%" }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.2, delay: 0.2 + (index * 0.1), ease: "circOut" }}
+                                className="h-full bg-sail-green group-hover:bg-sail-orange transition-colors duration-300"
+                             />
+                         </div>
+
+                         {/* Content */}
+                         <div className="relative z-10 flex flex-col h-full">
+                             <div className="flex justify-between items-start mb-6">
+                                 <span className="text-5xl font-heading font-bold text-gray-200 group-hover:text-sail-orange/80 transition-colors duration-500">
+                                     {step.id}
+                                 </span>
+                                 <div className="w-10 h-10 rounded-full bg-sail-offWhite flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-sail-orange shadow-sm">
+                                    <ArrowRight size={18} />
+                                 </div>
+                             </div>
+                             
+                             <h3 className="text-2xl font-heading font-bold text-sail-green mb-4 group-hover:translate-x-1 transition-transform duration-300">
+                                 {step.title}
+                             </h3>
+                             <p className="text-slate-600 leading-relaxed flex-grow">
+                                 {step.desc}
+                             </p>
+                         </div>
+
+                         {/* Subtle background gradient on hover */}
+                         <div className="absolute inset-0 bg-gradient-to-b from-white to-sail-offWhite/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                      </div>
-                 </AnimatedElement>
+                 </motion.div>
              ))}
+             
              {/* CTA Card in Grid */}
-             <AnimatedElement delay={0.6}>
-                 <div className="bg-sail-green h-full p-8 flex flex-col justify-center items-start text-white">
-                     <h3 className="text-2xl font-heading font-bold mb-4">Ready to start?</h3>
-                     <Button to="/contact" variant="white" className="!w-full">Get in Touch</Button>
+             <motion.div 
+                variants={{
+                    hidden: { opacity: 0, scale: 0.95 },
+                    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.6 } }
+                }}
+                className="h-full"
+             >
+                 <div className="bg-sail-green h-full p-8 flex flex-col justify-center items-start text-white rounded-xl relative overflow-hidden group shadow-xl">
+                     {/* Animated Background Pulse */}
+                     <div className="absolute -right-10 -top-10 w-40 h-40 bg-sail-orange/20 rounded-full blur-3xl group-hover:bg-sail-orange/40 transition-colors duration-700 animate-pulse"></div>
+                     
+                     <h3 className="text-3xl font-heading font-bold mb-6 relative z-10">Ready to start?</h3>
+                     <p className="text-white/80 mb-8 relative z-10">Let's turn this process into your progress.</p>
+                     <Button to="/contact" variant="white" className="!w-full relative z-10 group-hover:scale-105 transition-transform">Get in Touch</Button>
                  </div>
-             </AnimatedElement>
-         </div>
+             </motion.div>
+         </motion.div>
       </Section>
     </div>
   );

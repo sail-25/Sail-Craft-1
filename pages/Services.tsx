@@ -69,26 +69,28 @@ const Services: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => (
                 <AnimatedElement key={service.id} delay={i * 0.1} className="h-full">
-                    <Card className="flex flex-col h-full border-black/5 hover:border-sail-orange/50 hover:shadow-xl transition-all group p-8 bg-white">
-                        <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 text-sail-green flex items-center justify-center mb-6 group-hover:bg-sail-orange group-hover:text-white group-hover:border-sail-orange transition-colors duration-300 shadow-sm">
-                            <service.icon size={28} />
-                        </div>
-                        <h3 className="text-2xl font-heading font-bold text-sail-green mb-4">{service.title}</h3>
-                        <p className="text-slate-600 mb-8 flex-grow leading-relaxed">{service.desc}</p>
-                        
-                        <div className="border-t border-gray-100 pt-6 mt-auto">
-                             <ul className="space-y-3 mb-8">
-                                {service.subServices.map((tag, idx) => (
-                                    <li key={idx} className="flex items-center text-sm text-slate-500 font-medium">
-                                        <Check size={16} className="text-sail-orange mr-3" /> {tag}
-                                    </li>
-                                ))}
-                             </ul>
-                             <span className="text-sail-orange font-bold text-sm flex items-center group-hover:translate-x-2 transition-transform cursor-pointer uppercase tracking-widest">
-                                Learn more <ArrowRight size={16} className="ml-2" />
-                             </span>
-                        </div>
-                    </Card>
+                    <div id={service.id} className="h-full scroll-mt-32">
+                        <Card className="flex flex-col h-full border-black/5 hover:border-sail-orange/50 hover:shadow-xl transition-all group p-8 bg-white">
+                            <div className="w-14 h-14 rounded-lg bg-white border border-gray-200 text-sail-green flex items-center justify-center mb-6 group-hover:bg-sail-orange group-hover:text-white group-hover:border-sail-orange transition-colors duration-300 shadow-sm">
+                                <service.icon size={28} />
+                            </div>
+                            <h3 className="text-2xl font-heading font-bold text-sail-green mb-4">{service.title}</h3>
+                            <p className="text-slate-600 mb-8 flex-grow leading-relaxed">{service.desc}</p>
+                            
+                            <div className="border-t border-gray-100 pt-6 mt-auto">
+                                <ul className="space-y-3 mb-8">
+                                    {service.subServices.map((tag, idx) => (
+                                        <li key={idx} className="flex items-center text-sm text-slate-500 font-medium">
+                                            <Check size={16} className="text-sail-orange mr-3" /> {tag}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <span className="text-sail-orange font-bold text-sm flex items-center group-hover:translate-x-2 transition-transform cursor-pointer uppercase tracking-widest">
+                                    Learn more <ArrowRight size={16} className="ml-2" />
+                                </span>
+                            </div>
+                        </Card>
+                    </div>
                 </AnimatedElement>
             ))}
         </div>
