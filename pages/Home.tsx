@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Section, AnimatedElement, Button, DisplayText, Card, Parallax } from '../components/UI';
 import { ArrowRight, Zap, Play, Megaphone, Monitor, Bot, PenTool } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
   const heroParallax = useTransform(scrollY, [0, 1000], [0, 300]);
+  
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 5);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="overflow-hidden bg-white relative">
@@ -187,17 +196,88 @@ const Home: React.FC = () => {
           </div>
       </Section>
 
-      {/* Process - Simple & Stark */}
-      <Section className="border-y border-black/10 py-20 relative z-10 bg-white">
-        <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            {['Discovery', 'Strategy', 'Build', 'Launch', 'Scale'].map((step, i) => (
-                <div key={step} className="flex items-center group">
-                    <span className="text-2xl md:text-4xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-sail-green to-sail-green/60 hover:to-sail-orange transition-all cursor-default group-hover:scale-105 transform duration-300">
-                        {step}
-                    </span>
-                    {i < 4 && <span className="ml-4 md:ml-8 text-gray-300 text-2xl">/</span>}
-                </div>
-            ))}
+      {/* Process - Animated Flow */}
+      <Section className="border-y border-black/10 py-24 relative z-10 bg-white overflow-hidden">
+        <div className="flex flex-col items-center justify-center relative">
+             {/* Background text watermark for depth */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none">
+                <span className="text-[15vw] font-heading font-bold text-sail-green">PROCESS</span>
+            </div>
+
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 relative z-10">
+                {['Discovery', 'Strategy', 'Build', 'Launch', 'Scale'].map((step, i) => (
+                    <React.Fragment key={step}>
+                        <div className="relative flex flex-col items-center cursor-pointer" onClick={() => setActiveStep(i)}>
+                             <motion.span 
+                                animate={{ 
+                                    color: i === activeStep ? '#FF7441' : '#036029',
+                                    opacity: i === activeStep ? 1 : (Math.abs(activeStep - i) <= 1 ? 0.5 : 0.2),
+                                    scale: i === activeStep ? 1.1 : 1,
+                                    filter: i === activeStep ? 'blur(0px)' : 'blur(0.5px)'
+                                }}
+                                transition={{ duration: 0.5 }}
+                                className="text-3xl md:text-5xl font-heading font-bold transition-colors"
+                            >
+                                {step}
+                            </motion.span>
+                            
+                            {/* Active indicator dot underneath */}
+                            {i === activeStep && (
+                                <motion.div 
+                                    layoutId="activeStepIndicator"
+                                    className="absolute -bottom-6 w-2 h-2 rounded-full bg-sail-orange"
+                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                />
+                            )}
+                        </div>
+
+                        {/* Connector */}
+                        {i < 4 && (
+                             <div className="hidden md:flex items-center justify-center w-8 md:w-16">
+                                <div className="h-px bg-gray-200 w-full overflow-hidden relative">
+                                    <motion.div 
+                                        className="absolute inset-0 bg-sail-orange"
+                                        initial={{ x: "-100%" }}
+                                        animate={{ x: i < activeStep ? "0%" : "-100%" }}
+                                        transition={{ duration: 0.5 }}
+                                    />
+                                </div>
+                             </div>
+                        )}
+                         {/* Mobile Separator */}
+                         <span className="md:hidden text-gray-300 text-2xl">
+                             {i < 4 ? '/' : ''}
+                         </span>
+                    </React.Fragment>
+                ))}
+            </div>
+            
+            {/* Description of active step */}
+            <div className="mt-16 text-center h-20 relative z-10 px-4">
+                 <AnimatePresence mode="wait">
+                    <motion.div 
+                        key={activeStep}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="max-w-xl mx-auto"
+                    >
+                         <p className="text-sail-orange font-bold text-xs tracking-widest uppercase mb-3">Step 0{activeStep + 1}</p>
+                         <p className="text-slate-600 font-medium text-xl leading-relaxed">
+                            {
+                                [
+                                    "Uncovering your unique landscape to find hidden opportunities.",
+                                    "Charting the most effective path to your goals with precision.",
+                                    "Engineering robust, scalable solutions that last.",
+                                    "Go-live execution designed for maximum initial impact.",
+                                    "Continuous optimization for sustainable long-term growth."
+                                ][activeStep]
+                            }
+                         </p>
+                    </motion.div>
+                 </AnimatePresence>
+            </div>
         </div>
       </Section>
 

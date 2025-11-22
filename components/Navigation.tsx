@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
           `}>
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group min-w-fit">
-              <div className="w-10 h-10 text-sail-green group-hover:rotate-12 transition-transform duration-300">
+              <div className="w-8 h-8 flex-shrink-0 text-sail-green group-hover:rotate-12 transition-transform duration-300">
                  <BrandLogo className="w-full h-full" />
               </div>
               <span className="text-xl font-bold tracking-tight text-sail-green font-heading hidden sm:block">
