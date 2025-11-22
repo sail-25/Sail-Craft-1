@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, AnimatedElement, Button, DisplayText, PageHero } from '../components/UI';
+import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
 import { ArrowRight, Star, Shield, Zap, Users, Heart } from 'lucide-react';
 
 const values = [
@@ -28,30 +28,24 @@ const About: React.FC = () => {
          </p>
       </PageHero>
 
-      {/* Mission/Vision - Dual Pillar Layout */}
-      <Section fullWidth className="!p-0 border-b border-black/5">
-         <div className="grid md:grid-cols-2 min-h-[600px]">
-            <AnimatedElement className="bg-sail-offWhite p-12 md:p-20 flex flex-col justify-center border-b md:border-b-0 md:border-r border-black/5 relative overflow-hidden group">
-                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <span className="font-heading font-bold text-9xl text-sail-green">M</span>
-                 </div>
-                <h3 className="text-sail-orange font-bold tracking-widest uppercase mb-8 flex items-center gap-3">
-                    <span className="w-8 h-px bg-sail-orange"></span> Mission
-                </h3>
-                <p className="text-4xl md:text-5xl font-heading text-sail-green leading-tight font-bold relative z-10">
-                    To Power the Next Generation of Business Excellence.
-                </p>
+      {/* Mission/Vision - Standard Clean Layout */}
+      <Section className="bg-white">
+         <div className="grid md:grid-cols-2 gap-12">
+            <AnimatedElement>
+                <Card className="h-full flex flex-col justify-center p-10 border-l-4 border-l-sail-orange border-y-0 border-r-0 rounded-none bg-slate-50">
+                    <h3 className="text-sail-orange font-bold tracking-widest uppercase mb-4">Mission</h3>
+                    <p className="text-3xl font-heading text-sail-green leading-tight font-bold">
+                        To Power the Next Generation of Business Excellence.
+                    </p>
+                </Card>
             </AnimatedElement>
-            <AnimatedElement delay={0.1} className="bg-sail-green p-12 md:p-20 flex flex-col justify-center text-white relative overflow-hidden group">
-                <div className="absolute bottom-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <span className="font-heading font-bold text-9xl text-white">V</span>
-                 </div>
-                <h3 className="text-sail-orange font-bold tracking-widest uppercase mb-8 flex items-center gap-3">
-                    <span className="w-8 h-px bg-sail-orange"></span> Vision
-                </h3>
-                <p className="text-4xl md:text-5xl font-heading leading-tight font-bold relative z-10">
-                    A World Where Every Business Can Compete — and Win.
-                </p>
+            <AnimatedElement delay={0.1}>
+                <Card className="h-full flex flex-col justify-center p-10 border-l-4 border-l-sail-green border-y-0 border-r-0 rounded-none bg-slate-50">
+                    <h3 className="text-sail-green font-bold tracking-widest uppercase mb-4">Vision</h3>
+                    <p className="text-3xl font-heading text-sail-green leading-tight font-bold">
+                        A World Where Every Business Can Compete — and Win.
+                    </p>
+                </Card>
             </AnimatedElement>
          </div>
       </Section>
@@ -73,36 +67,27 @@ const About: React.FC = () => {
          </div>
       </div>
 
-      {/* Values Ecosystem */}
-      <Section className="bg-white py-24 md:py-32">
-        <div className="mb-16 max-w-3xl">
+      {/* Values - Standard Grid */}
+      <Section className="bg-white py-24">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
              <span className="text-sail-orange font-bold tracking-widest uppercase text-sm mb-2 block">Our DNA</span>
-             <h2 className="text-5xl font-heading text-sail-green font-bold">The Principles We Live By</h2>
+             <h2 className="text-4xl font-heading text-sail-green font-bold">The Principles We Live By</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {values.map((val, i) => (
             <AnimatedElement key={val.title} delay={i * 0.1} className="h-full">
-                <div className="group h-full bg-white border border-gray-200 p-8 hover:border-sail-orange hover:shadow-xl hover:shadow-sail-orange/10 transition-all duration-300 flex flex-col relative overflow-hidden">
-                    <div className="absolute -right-4 -top-4 text-9xl font-heading font-bold text-gray-50 group-hover:text-sail-offWhite transition-colors -z-0 select-none">
-                        0{i + 1}
-                    </div>
-                    <div className="relative z-10">
-                        <val.icon className="w-10 h-10 text-sail-orange mb-6" />
-                        <h3 className="font-heading text-2xl text-sail-green font-bold mb-4">{val.title}</h3>
-                        <p className="text-slate-600 leading-relaxed">{val.desc}</p>
-                    </div>
-                </div>
+                <Card className="h-full p-8 hover:shadow-lg transition-shadow">
+                    <val.icon className="w-10 h-10 text-sail-orange mb-6" />
+                    <h3 className="font-heading text-2xl text-sail-green font-bold mb-4">{val.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{val.desc}</p>
+                </Card>
             </AnimatedElement>
           ))}
         </div>
-        
-        <div className="mt-16 flex justify-center">
-            <Button to="/work-with-us" variant="outline" icon>Join Our Team</Button>
-        </div>
       </Section>
       
-      {/* High-Impact Split CTA */}
+      {/* High-Impact Split CTA (Kept as requested) */}
       <Section fullWidth className="!p-0 bg-sail-darkGreen text-white border-t border-white/10 overflow-hidden relative">
          <div className="absolute inset-0 opacity-10 pointer-events-none select-none flex items-center justify-center">
             <span className="text-[20vw] font-heading font-bold text-white tracking-tighter">START</span>

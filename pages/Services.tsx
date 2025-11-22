@@ -1,6 +1,6 @@
 import React from 'react';
-import { Section, AnimatedElement, Button, DisplayText, PageHero } from '../components/UI';
-import { Megaphone, Monitor, PenTool, Cpu, Briefcase, Bot, ArrowRight, Layers } from 'lucide-react';
+import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
+import { Megaphone, Monitor, PenTool, Cpu, Briefcase, Bot } from 'lucide-react';
 
 const services = [
   {
@@ -65,57 +65,39 @@ const Services: React.FC = () => {
         </p>
       </PageHero>
 
+      {/* Standard Services Grid */}
       <Section className="py-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => (
                 <AnimatedElement key={service.id} delay={i * 0.1} className="h-full">
-                    <div id={service.id} className="h-full scroll-mt-32 group">
-                        {/* Tech Spec Card Design */}
-                        <div className="h-full bg-white border border-gray-200 hover:border-sail-green/50 transition-all duration-300 flex flex-col relative overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-sail-green/5 rounded-lg">
+                    <div id={service.id} className="h-full scroll-mt-32">
+                        <Card className="h-full p-8 flex flex-col hover:border-sail-green/30 transition-colors">
+                            <div className="w-14 h-14 bg-sail-offWhite rounded-lg flex items-center justify-center text-sail-orange mb-6">
+                                <service.icon size={28} />
+                            </div>
                             
-                            {/* Header Strip */}
-                            <div className="h-2 w-full bg-gray-100 group-hover:bg-sail-orange transition-colors duration-300"></div>
+                            <h3 className="text-2xl font-heading font-bold text-sail-green mb-4">{service.title}</h3>
+                            <p className="text-slate-600 mb-6 text-base leading-relaxed flex-grow">
+                                {service.desc}
+                            </p>
                             
-                            <div className="p-8 flex flex-col h-full">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="p-3 bg-sail-offWhite rounded-lg text-sail-green group-hover:bg-sail-green group-hover:text-white transition-colors duration-300">
-                                        <service.icon size={24} />
-                                    </div>
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-300 group-hover:text-sail-orange transition-colors">
-                                        0{i + 1}
-                                    </span>
-                                </div>
-                                
-                                <h3 className="text-2xl font-heading font-bold text-sail-green mb-3">{service.title}</h3>
-                                <p className="text-slate-600 mb-8 text-base leading-relaxed flex-grow border-b border-gray-100 pb-8">
-                                    {service.desc}
-                                </p>
-                                
-                                <div>
-                                    <span className="text-xs font-bold text-sail-green uppercase tracking-widest mb-4 flex items-center gap-2">
-                                        <Layers size={14} /> Capabilities
-                                    </span>
-                                    <div className="flex flex-wrap gap-2 mb-8">
-                                        {service.subServices.map((tag, idx) => (
-                                            <span key={idx} className="px-3 py-1 bg-gray-50 text-slate-600 text-xs font-medium border border-gray-100 rounded-full">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    
-                                    <Button to="/contact" variant="outline" className="w-full !py-3 !text-sm justify-between group/btn">
-                                        Inquire <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform"/>
-                                    </Button>
+                            <div className="border-t border-gray-100 pt-6">
+                                <div className="flex flex-wrap gap-2">
+                                    {service.subServices.map((tag, idx) => (
+                                        <span key={idx} className="px-3 py-1 bg-gray-50 text-slate-500 text-xs font-medium rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
+                        </Card>
                     </div>
                 </AnimatedElement>
             ))}
         </div>
       </Section>
 
-      {/* Launchpad CTA Banner */}
+      {/* Launchpad CTA Banner (Kept as requested) */}
       <Section fullWidth className="!p-0 bg-sail-orange text-white overflow-hidden relative">
          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
          <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-black/10 to-transparent"></div>
