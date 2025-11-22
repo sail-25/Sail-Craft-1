@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
-import { Megaphone, Monitor, PenTool, Cpu, Briefcase, Bot } from 'lucide-react';
+import { Megaphone, Monitor, PenTool, Cpu, Briefcase, Bot, ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -71,24 +71,32 @@ const Services: React.FC = () => {
             {services.map((service, i) => (
                 <AnimatedElement key={service.id} delay={i * 0.1} className="h-full">
                     <div id={service.id} className="h-full scroll-mt-32">
-                        <Card className="h-full p-8 flex flex-col hover:border-sail-green/30 transition-colors">
-                            <div className="w-14 h-14 bg-sail-offWhite rounded-lg flex items-center justify-center text-sail-orange mb-6">
+                        <Card className="h-full p-10 flex flex-col hover:shadow-xl hover:shadow-sail-green/5 transition-all duration-300 group border-t-4 border-t-transparent hover:border-t-sail-orange bg-white">
+                            <div className="w-14 h-14 bg-sail-offWhite rounded-lg flex items-center justify-center text-sail-green group-hover:text-sail-orange mb-8 transition-colors">
                                 <service.icon size={28} />
                             </div>
                             
-                            <h3 className="text-2xl font-heading font-bold text-sail-green mb-4">{service.title}</h3>
-                            <p className="text-slate-600 mb-6 text-base leading-relaxed flex-grow">
+                            <h3 className="text-3xl font-heading font-bold text-sail-green mb-4 group-hover:text-sail-orange transition-colors">{service.title}</h3>
+                            <p className="text-slate-600 mb-8 text-lg leading-relaxed flex-grow">
                                 {service.desc}
                             </p>
                             
-                            <div className="border-t border-gray-100 pt-6">
-                                <div className="flex flex-wrap gap-2">
-                                    {service.subServices.map((tag, idx) => (
-                                        <span key={idx} className="px-3 py-1 bg-gray-50 text-slate-500 text-xs font-medium rounded-full">
-                                            {tag}
-                                        </span>
+                            <div className="mb-8">
+                                <ul className="space-y-3 border-t border-gray-100 pt-6">
+                                    {service.subServices.map((item, idx) => (
+                                        <li key={idx} className="text-slate-500 font-medium flex items-start text-base">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-sail-orange mt-2 mr-3 shrink-0 opacity-60"></span>
+                                            {item}
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
+                            </div>
+
+                            <div className="mt-auto">
+                                <span className="text-sail-orange font-bold tracking-widest uppercase text-sm flex items-center group/btn cursor-pointer">
+                                    Learn More 
+                                    <ArrowRight size={16} className="ml-2 transition-transform group-hover/btn:translate-x-1" />
+                                </span>
                             </div>
                         </Card>
                     </div>
@@ -97,31 +105,21 @@ const Services: React.FC = () => {
         </div>
       </Section>
 
-      {/* Launchpad CTA Banner (Kept as requested) */}
-      <Section fullWidth className="!p-0 bg-sail-orange text-white overflow-hidden relative">
-         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-         <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-black/10 to-transparent"></div>
-         
-         <div className="container mx-auto px-6 md:px-12 py-20 md:py-28 relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-                <div className="max-w-3xl">
-                    <AnimatedElement>
-                        <h2 className="text-5xl md:text-7xl font-heading font-bold mb-6 leading-tight tracking-tight">
-                            Ready to Launch?
-                        </h2>
-                        <p className="text-xl md:text-2xl font-medium text-white/90 max-w-xl">
-                            Turn these capabilities into your competitive advantage.
-                        </p>
-                    </AnimatedElement>
-                </div>
-                <AnimatedElement delay={0.2}>
-                    <div className="bg-white p-2 rounded-full shadow-2xl shadow-black/20">
-                        <Button to="/work-with-us" variant="dark" className="!px-12 !py-6 !text-xl !rounded-full" icon>
-                            Initialize Growth
-                        </Button>
-                    </div>
-                </AnimatedElement>
-            </div>
+      {/* CTA Banner - Clean Design */}
+      <Section fullWidth className="!p-0 bg-sail-offWhite border-t border-sail-green/10">
+         <div className="container mx-auto px-6 md:px-12 py-32 text-center">
+            <AnimatedElement>
+                 <h2 className="text-4xl md:text-6xl font-heading font-bold text-sail-green mb-8 leading-[1.1] tracking-tight max-w-5xl mx-auto">
+                     Growth Doesn’t Happen by Accident — <br className="hidden lg:block" />
+                     It Happens by Design
+                 </h2>
+                 <p className="text-xl text-slate-600 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+                    Let’s design a plan that creates results you can measure, momentum you can feel, and progress you can scale.
+                 </p>
+                 <Button to="/contact" variant="primary" className="!px-12 !py-5 !text-lg shadow-xl shadow-sail-orange/20 hover:shadow-sail-orange/40" icon>
+                    Launch My Growth Plan
+                 </Button>
+            </AnimatedElement>
          </div>
       </Section>
     </div>
