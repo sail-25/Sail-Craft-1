@@ -6,7 +6,8 @@ import { ArrowRight, Zap, Play, Megaphone, Monitor, Bot, PenTool } from 'lucide-
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
-  const heroParallax = useTransform(scrollY, [0, 1000], [0, 300]);
+  // Refined parallax for subtler, gap-free movement
+  const heroParallax = useTransform(scrollY, [0, 1000], [0, 200]);
   
   const [activeStep, setActiveStep] = useState(0);
 
@@ -28,7 +29,7 @@ const Home: React.FC = () => {
 
       {/* Architectural Hero - Brutal & Clean */}
       <Section className="min-h-screen flex flex-col justify-center relative pt-32 md:pt-40 overflow-hidden" fullWidth>
-        <div className="absolute inset-0 z-0 h-[120%] -top-[10%]">
+        <div className="absolute inset-0 z-0 h-[140%] -top-[20%]">
             <motion.div style={{ y: heroParallax }} className="w-full h-full">
                 <img 
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 

@@ -131,16 +131,16 @@ export const PageHero: React.FC<{
   className?: string;
 }> = ({ title, subtitle, image, children, className = "" }) => {
   const { scrollY } = useScroll();
-  // Create a parallax effect for the background image
-  const y = useTransform(scrollY, [0, 500], [0, 200]);
+  // Enhanced parallax effect: Larger buffer (top -20%, height 140%) prevents gaps
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
   
   return (
     <section className={`relative pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden ${className}`}>
-      <div className="absolute inset-0 z-0 h-[120%]">
+      <div className="absolute inset-0 z-0 h-[140%] -top-[20%]">
         <motion.div style={{ y }} className="w-full h-full">
           <img
             src={image}
-            className="w-full h-full object-cover opacity-10 md:opacity-15" // Decreased opacity
+            className="w-full h-full object-cover opacity-10 md:opacity-15"
             alt="Background"
           />
         </motion.div>
@@ -149,7 +149,7 @@ export const PageHero: React.FC<{
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
         
         {/* Subtle animated background blobs */}
-        <div className="absolute inset-0 overflow-hidden opacity-40">
+        <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none">
            <div className="absolute -top-20 -right-20 w-96 h-96 bg-sail-green/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
            <div className="absolute top-40 -left-20 w-72 h-72 bg-sail-orange/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
         </div>
