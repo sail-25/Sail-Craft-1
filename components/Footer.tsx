@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
                 <div>
                     <h4 className="text-sail-orange font-bold mb-6 uppercase text-xs tracking-widest">Company</h4>
                     <ul className="space-y-4">
-                        {['About', 'Success Stories', 'Work With Us', 'Contact'].map(item => (
+                        {['About', 'Success Stories', 'Work With Us'].map(item => (
                             <li key={item}>
                                 <Link to={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-slate-600 hover:text-sail-green transition-colors flex items-center group">
                                     {item}
