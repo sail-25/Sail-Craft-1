@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Anchor, Linkedin, Instagram, Facebook, Youtube, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Youtube, ArrowUpRight } from 'lucide-react';
+import { BrandLogo } from './UI';
 
 const Footer: React.FC = () => {
   return (
@@ -9,9 +10,9 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-12">
             {/* Brand Column */}
             <div className="max-w-sm">
-                <div className="flex items-center gap-2 mb-8">
-                    <div className="p-2 bg-sail-green text-white rounded-lg">
-                        <Anchor size={24} />
+                <div className="flex items-center gap-2 mb-8 group">
+                    <div className="w-10 h-10 text-sail-green group-hover:text-sail-orange transition-colors duration-300">
+                        <BrandLogo className="w-full h-full" />
                     </div>
                     <span className="text-2xl font-bold font-heading">SailCraft Solutions</span>
                 </div>

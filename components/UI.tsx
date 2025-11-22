@@ -12,6 +12,25 @@ interface ButtonProps {
   icon?: boolean;
 }
 
+// Custom Brand Logo Component based on provided image
+export const BrandLogo: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <svg 
+    viewBox="0 0 433 433" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    className={className}
+  >
+    <path 
+      d="M206.5 0C92.4562 0 0 92.4562 0 206.5V433H206.5V0Z" 
+      fill="currentColor" 
+    />
+    <path 
+      d="M268.484 433V172.616L433 433H268.484Z" 
+      fill="currentColor" 
+    />
+  </svg>
+);
+
 export const Button: React.FC<ButtonProps> = ({ 
   children, 
   to, 

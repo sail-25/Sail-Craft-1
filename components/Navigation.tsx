@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Anchor } from 'lucide-react';
-import { Button } from './UI';
+import { Menu, X } from 'lucide-react';
+import { Button, BrandLogo } from './UI';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,8 +40,8 @@ const Navigation: React.FC = () => {
           `}>
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group min-w-fit">
-              <div className="p-2 bg-sail-green text-white rounded-lg group-hover:rotate-12 transition-transform duration-300">
-                 <Anchor size={20} />
+              <div className="w-10 h-10 text-sail-green group-hover:rotate-12 transition-transform duration-300">
+                 <BrandLogo className="w-full h-full" />
               </div>
               <span className="text-xl font-bold tracking-tight text-sail-green font-heading hidden sm:block">
                 SailCraft Solutions
