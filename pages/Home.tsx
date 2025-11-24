@@ -33,12 +33,12 @@ const Home: React.FC = () => {
             <motion.div style={{ y: heroParallax }} className="w-full h-full">
                 <img 
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                    className="w-full h-full object-cover opacity-10 md:opacity-15 select-none grayscale"
+                    className="w-full h-full object-cover opacity-25 md:opacity-30 select-none grayscale"
                     alt="Modern glass architecture"
                 />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
