@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero } from '../components/UI';
 import { CheckCircle, Loader2, Send } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -35,6 +36,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
+      <SEO 
+        title="Contact SailCraft Solutions | Nairobi, Kenya"
+        description="Get in touch with SailCraft Solutions. Call +254 704 201 545 or email info@sailcraftsolutions.co.ke for expert digital services."
+        keywords={["Contact Digital Agency", "Nairobi Web Developers Contact", "Hire AI Team Kenya"]}
+      />
+
       <PageHero
         image="https://images.unsplash.com/photo-1423666639041-f142fcb93461?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         subtitle="Get In Touch"

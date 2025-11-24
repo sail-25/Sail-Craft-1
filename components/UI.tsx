@@ -175,10 +175,12 @@ export const PageHero: React.FC<{
 
 export const AnimatedElement: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = "" }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-    viewport={{ once: true, margin: "-10%" }}
-    transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+    {...({
+      initial: { opacity: 0, y: 20, filter: 'blur(10px)' },
+      whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+      viewport: { once: true, margin: "-10%" },
+      transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }
+    } as any)}
     className={className}
   >
     {children}
@@ -235,10 +237,12 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({ title, subtitle, c
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            {...({
+              initial: { height: 0, opacity: 0 },
+              animate: { height: 'auto', opacity: 1 },
+              exit: { height: 0, opacity: 0 },
+              transition: { duration: 0.3, ease: "easeInOut" }
+            } as any)}
             className="overflow-hidden"
           >
              <div className="pb-8 px-4 pt-2">

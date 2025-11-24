@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
 import { Megaphone, Monitor, PenTool, Cpu, Briefcase, Bot, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const services = [
   {
@@ -50,6 +51,13 @@ const services = [
 const Services: React.FC = () => {
   return (
     <div className="bg-white">
+      <SEO 
+        title="Top Enterprise Web Development & AI Services | SailCraft Solutions"
+        description="Comprehensive digital services: Custom Software Development, AI Integration, SEO Marketing, and Corporate Branding. We deliver results."
+        keywords={["Web Development Kenya", "AI Consulting Nairobi", "Corporate Branding Services", "SEO Agency Nairobi", "Mobile App Development Kenya"]}
+        type="service"
+      />
+
       <PageHero
         image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         subtitle="Our Expertise"

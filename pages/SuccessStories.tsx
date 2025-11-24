@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, AccordionItem } from '../components/UI';
 import { Trophy, Target, Zap, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const cases = [
   {
@@ -37,6 +38,12 @@ const SuccessStories: React.FC = () => {
 
   return (
     <div className="bg-white">
+      <SEO 
+        title="Success Stories & Case Studies | SailCraft Solutions"
+        description="See how we've helped businesses achieve 200% growth through strategic digital transformation, AI implementation, and modern branding."
+        keywords={["Case Studies", "Client Success Stories", "Digital Transformation Examples", "ROI Focused Agency"]}
+      />
+
       <PageHero
         image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         subtitle="Case Studies"

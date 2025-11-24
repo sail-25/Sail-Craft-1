@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Section, AnimatedElement, Button, DisplayText, PageHero } from '../components/UI';
 import { Rocket, TrendingUp, Briefcase, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const WorkWithUs: React.FC = () => {
   
@@ -35,6 +36,12 @@ const WorkWithUs: React.FC = () => {
 
   return (
     <div className="bg-white">
+      <SEO 
+        title="Start Your Project | Work With SailCraft Solutions"
+        description="Partner with Kenya's top digital experts. From startups to enterprise, we offer tailored packages for scaling your business."
+        keywords={["Hire Developers Kenya", "Digital Marketing Agency Hire", "Startup Tech Partner", "Enterprise Software Solutions"]}
+      />
+
       {/* Hero */}
       <PageHero
         image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80"
@@ -78,21 +85,25 @@ const WorkWithUs: React.FC = () => {
          </div>
 
          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-            variants={{
-                visible: { transition: { staggerChildren: 0.15 } }
-            }}
+            {...({
+                initial: "hidden",
+                whileInView: "visible",
+                viewport: { once: true, margin: "-10%" },
+                variants: {
+                    visible: { transition: { staggerChildren: 0.15 } }
+                }
+            } as any)}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
          >
              {steps.map((step, index) => (
                  <motion.div 
                     key={step.id} 
-                    variants={{
-                        hidden: { opacity: 0, y: 50 },
-                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-                    }}
+                    {...({
+                        variants: {
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                        }
+                    } as any)}
                     className="relative group h-full"
                  >
                      {/* Card Container */}
@@ -101,10 +112,12 @@ const WorkWithUs: React.FC = () => {
                          {/* Animated Progress Bar Top */}
                          <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 rounded-t-xl overflow-hidden">
                              <motion.div 
-                                initial={{ width: 0 }}
-                                whileInView={{ width: "100%" }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: 0.2 + (index * 0.1), ease: "circOut" }}
+                                {...({
+                                    initial: { width: 0 },
+                                    whileInView: { width: "100%" },
+                                    viewport: { once: true },
+                                    transition: { duration: 1.2, delay: 0.2 + (index * 0.1), ease: "circOut" }
+                                } as any)}
                                 className="h-full bg-sail-green group-hover:bg-sail-orange transition-colors duration-300"
                              />
                          </div>
@@ -136,10 +149,12 @@ const WorkWithUs: React.FC = () => {
              
              {/* CTA Card in Grid */}
              <motion.div 
-                variants={{
-                    hidden: { opacity: 0, scale: 0.95 },
-                    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.6 } }
-                }}
+                {...({
+                    variants: {
+                        hidden: { opacity: 0, scale: 0.95 },
+                        visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.6 } }
+                    }
+                } as any)}
                 className="h-full"
              >
                  <div className="bg-sail-green h-full p-8 flex flex-col justify-center items-start text-white rounded-xl relative overflow-hidden group shadow-xl">

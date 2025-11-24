@@ -1,9 +1,16 @@
 import React from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, Card } from '../components/UI';
+import { SEO } from '../components/SEO';
 
 const About: React.FC = () => {
   return (
     <div className="bg-white">
+      <SEO 
+        title="About SailCraft Solutions | Kenya's Leading Digital Strategists"
+        description="We are growth architects. SailCraft combines strategy, creativity, and technology to build systems that scale businesses."
+        keywords={["About SailCraft", "Digital Strategy Kenya", "Tech Visionaries Nairobi", "Business Growth Consultants"]}
+      />
+
       <PageHero
         image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         subtitle="Who We Are"

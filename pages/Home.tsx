@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Section, AnimatedElement, Button, DisplayText, Card, Parallax } from '../components/UI';
 import { ArrowRight, Zap, Play, Megaphone, Monitor, Bot, PenTool } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
@@ -20,6 +21,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="overflow-hidden bg-white relative">
+      <SEO 
+        title="Best Digital Growth Agency in Kenya | AI & Software Solutions"
+        description="SailCraft Solutions is Kenya's leading digital agency for Enterprise Web Development, Artificial Intelligence, and Strategic Marketing. We build systems that scale."
+        keywords={["Best Digital Agency Kenya", "Top Software Developers Nairobi", "AI Business Integration", "Corporate Branding Kenya", "Leading Tech Firm Nairobi"]}
+        type="organization"
+      />
+
       {/* Ambient Background Animation */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sail-orange/5 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
@@ -34,10 +42,10 @@ const Home: React.FC = () => {
                 <img 
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                     className="w-full h-full object-cover opacity-25 md:opacity-30 select-none grayscale"
-                    alt="Modern glass architecture"
+                    alt="Modern glass architecture representing sailcraft digital foundation"
                 />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/70"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white"></div>
         </div>
 
@@ -47,8 +55,9 @@ const Home: React.FC = () => {
                     <div className="max-w-5xl">
                         <div className="inline-flex items-center gap-2 px-3 py-1 border border-black/10 bg-white rounded-full text-sail-green text-xs font-bold tracking-widest mb-6 uppercase">
                             <span className="w-2 h-2 rounded-full bg-sail-orange"></span>
-                            Digital Growth Agency
+                            #1 Digital Growth Partner
                         </div>
+                        <h1 className="sr-only">SailCraft Solutions - Kenya's Best Digital Agency</h1>
                         <DisplayText size="xl" className="text-sail-green relative tracking-tighter">
                             CHARTING<br/>
                             <span className="text-sail-orange">POSSIBILITY</span>
@@ -75,7 +84,7 @@ const Home: React.FC = () => {
                         <img 
                             src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2301&q=80" 
                             className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 -mt-[10%]"
-                            alt="Corporate architecture interior"
+                            alt="Corporate architecture interior showing enterprise scale"
                         />
                     </Parallax>
                     <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-white/90 backdrop-blur-sm border-t border-black/5">
@@ -185,7 +194,7 @@ const Home: React.FC = () => {
                       <Parallax offset={40} className="w-full h-full">
                         <img 
                             src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" 
-                            alt="Minimalist computer setup" 
+                            alt="Minimalist computer setup for software development" 
                             className="w-full h-[120%] object-cover opacity-80 mix-blend-overlay grayscale contrast-125 -mt-[10%]"
                         />
                       </Parallax>
@@ -212,13 +221,15 @@ const Home: React.FC = () => {
                     <React.Fragment key={step}>
                         <div className="relative flex flex-col items-center cursor-pointer" onClick={() => setActiveStep(i)}>
                              <motion.span 
-                                animate={{ 
-                                    color: i === activeStep ? '#FF7441' : '#036029',
-                                    opacity: i === activeStep ? 1 : (Math.abs(activeStep - i) <= 1 ? 0.5 : 0.2),
-                                    scale: i === activeStep ? 1.1 : 1,
-                                    filter: i === activeStep ? 'blur(0px)' : 'blur(0.5px)'
-                                }}
-                                transition={{ duration: 0.5 }}
+                                {...({
+                                    animate: { 
+                                        color: i === activeStep ? '#FF7441' : '#036029',
+                                        opacity: i === activeStep ? 1 : (Math.abs(activeStep - i) <= 1 ? 0.5 : 0.2),
+                                        scale: i === activeStep ? 1.1 : 1,
+                                        filter: i === activeStep ? 'blur(0px)' : 'blur(0.5px)'
+                                    },
+                                    transition: { duration: 0.5 }
+                                } as any)}
                                 className="text-3xl md:text-5xl font-heading font-bold transition-colors"
                             >
                                 {step}
@@ -227,9 +238,11 @@ const Home: React.FC = () => {
                             {/* Active indicator dot underneath */}
                             {i === activeStep && (
                                 <motion.div 
-                                    layoutId="activeStepIndicator"
                                     className="absolute -bottom-6 w-2 h-2 rounded-full bg-sail-orange"
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    {...({
+                                        layoutId: "activeStepIndicator",
+                                        transition: { type: "spring", stiffness: 300, damping: 30 }
+                                    } as any)}
                                 />
                             )}
                         </div>
@@ -240,9 +253,11 @@ const Home: React.FC = () => {
                                 <div className="h-px bg-gray-200 w-full overflow-hidden relative">
                                     <motion.div 
                                         className="absolute inset-0 bg-sail-orange"
-                                        initial={{ x: "-100%" }}
-                                        animate={{ x: i < activeStep ? "0%" : "-100%" }}
-                                        transition={{ duration: 0.5 }}
+                                        {...({
+                                            initial: { x: "-100%" },
+                                            animate: { x: i < activeStep ? "0%" : "-100%" },
+                                            transition: { duration: 0.5 }
+                                        } as any)}
                                     />
                                 </div>
                              </div>
@@ -260,10 +275,12 @@ const Home: React.FC = () => {
                  <AnimatePresence mode="wait">
                     <motion.div 
                         key={activeStep}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
+                        {...({
+                            initial: { opacity: 0, y: 20 },
+                            animate: { opacity: 1, y: 0 },
+                            exit: { opacity: 0, y: -20 },
+                            transition: { duration: 0.3 }
+                        } as any)}
                         className="max-w-xl mx-auto"
                     >
                          <p className="text-sail-orange font-bold text-xs tracking-widest uppercase mb-3">Step 0{activeStep + 1}</p>
@@ -292,7 +309,7 @@ const Home: React.FC = () => {
                     <img 
                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                         className="absolute inset-0 w-full h-[120%] object-cover grayscale -mt-[10%]"
-                        alt="Team collaboration"
+                        alt="Team collaboration on digital project"
                     />
                   </Parallax>
                    <div className="absolute inset-0 bg-sail-green/80 mix-blend-multiply"></div>

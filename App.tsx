@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -34,24 +35,28 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  const helmetContext = {};
+
   return (
-    <HashRouter>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden">
-        <Navigation />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/work-with-us" element={<WorkWithUs />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </HashRouter>
+    <HelmetProvider context={helmetContext}>
+      <HashRouter>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden">
+          <Navigation />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/success-stories" element={<SuccessStories />} />
+              <Route path="/work-with-us" element={<WorkWithUs />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </HashRouter>
+    </HelmetProvider>
   );
 };
 
