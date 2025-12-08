@@ -52,9 +52,10 @@ const Services: React.FC = () => {
   return (
     <div className="bg-white">
       <SEO 
-        title="Top Enterprise Web Development & AI Services | SailCraft Solutions"
-        description="Comprehensive digital services: Custom Software Development, AI Integration, SEO Marketing, and Corporate Branding. We deliver results."
+        title="Enterprise Web Development & AI Services"
+        description="Comprehensive digital services in Kenya: Custom Software Development, AI Integration, SEO Marketing, and Corporate Branding. View our full service list."
         keywords={["Web Development Kenya", "AI Consulting Nairobi", "Corporate Branding Services", "SEO Agency Nairobi", "Mobile App Development Kenya"]}
+        path="services"
         type="service"
       />
 

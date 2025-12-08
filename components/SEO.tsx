@@ -4,32 +4,41 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title: string;
   description: string;
-  canonical?: string;
+  path?: string; // Used for Canonical URL & Breadcrumbs
   type?: 'website' | 'article' | 'organization' | 'service';
   keywords?: string[];
   image?: string;
+  schema?: object; // Allow passing custom schema
 }
 
 export const SEO: React.FC<SEOProps> = ({ 
   title, 
   description, 
-  canonical, 
+  path = "", 
   type = 'website',
   keywords = [],
-  image = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  image = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+  schema
 }) => {
   const siteUrl = "https://sailcraftsolutions.co.ke";
   const fullTitle = `${title} | SailCraft Solutions`;
-  const currentUrl = canonical ? canonical : siteUrl;
+  
+  // Ensure path starts with slash if it exists
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  const currentUrl = `${siteUrl}${path ? cleanPath : ''}`;
 
-  // GEO (Generative Engine Optimization) - Structured Data
-  // This tells AI models explicitly who you are and what you do.
+  // 1. Organization Schema (The Foundation for GEO)
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "SailCraft Solutions",
     "url": siteUrl,
-    "logo": "https://sailcraftsolutions.co.ke/logo.png",
+    "logo": `${siteUrl}/logo.png`,
+    "sameAs": [
+      "https://www.linkedin.com/company/sailcraftsolutions",
+      "https://www.instagram.com/sailcraftsolutions",
+      "https://www.facebook.com/sailcraftsolutions"
+    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+254 704 201 545",
@@ -37,51 +46,39 @@ export const SEO: React.FC<SEOProps> = ({
       "areaServed": "KE",
       "availableLanguage": "en"
     },
-    "sameAs": [
-      "https://www.facebook.com/sailcraftsolutions",
-      "https://www.instagram.com/sailcraftsolutions",
-      "https://www.linkedin.com/company/sailcraftsolutions"
-    ],
-    "description": "Kenya's leading digital growth agency specializing in Enterprise AI, Software Development, and Strategic Marketing."
-  };
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "SailCraft Solutions",
-    "image": image,
-    "@id": siteUrl,
-    "url": siteUrl,
-    "telephone": "+254 704 201 545",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Nairobi",
       "addressLocality": "Nairobi",
       "addressCountry": "KE"
-    },
-    "priceRange": "$$$",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "08:00",
-      "closes": "18:00"
     }
   };
 
-  const schemaToRender = type === 'organization' ? organizationSchema : serviceSchema;
+  // 2. Breadcrumb Schema (Helps Google show: Home > Services > Item)
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteUrl
+      },
+      ...(path ? [{
+        "@type": "ListItem",
+        "position": 2,
+        "name": title.replace(' | SailCraft Solutions', ''),
+        "item": currentUrl
+      }] : [])
+    ]
+  };
 
   return (
     <Helmet>
       {/* Standard Metadata */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={["Digital Agency Kenya", "Best AI Solutions Nairobi", "Enterprise Web Development", "Growth Strategy", ...keywords].join(", ")} />
+      <meta name="keywords" content={["Digital Agency Kenya", "Software Development Nairobi", "AI Solutions Kenya", "Business Growth Strategy", ...keywords].join(", ")} />
       <link rel="canonical" href={currentUrl} />
 
       {/* Open Graph / Facebook / LinkedIn */}
@@ -98,9 +95,9 @@ export const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {/* JSON-LD Structured Data for AI & Google Rich Snippets */}
+      {/* JSON-LD Structured Data Injection */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaToRender)}
+        {JSON.stringify([organizationSchema, breadcrumbSchema, schema].filter(Boolean))}
       </script>
     </Helmet>
   );

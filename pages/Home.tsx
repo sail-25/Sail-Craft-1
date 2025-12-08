@@ -11,20 +11,36 @@ const Home: React.FC = () => {
   const heroParallax = useTransform(scrollY, [0, 1000], [0, 200]);
   
   const [activeStep, setActiveStep] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % 5);
     }, 2500);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
+
+  const handleStepClick = (index: number) => {
+    setActiveStep(index);
+    setIsPaused(true);
+  };
 
   return (
     <div className="overflow-hidden bg-white relative">
       <SEO 
-        title="Best Digital Growth Agency in Kenya | AI & Software Solutions"
-        description="SailCraft Solutions is Kenya's leading digital agency for Enterprise Web Development, Artificial Intelligence, and Strategic Marketing. We build systems that scale."
-        keywords={["Best Digital Agency Kenya", "Top Software Developers Nairobi", "AI Business Integration", "Corporate Branding Kenya", "Leading Tech Firm Nairobi"]}
+        title="Top Digital Growth Agency in Kenya"
+        description="SailCraft Solutions is Nairobi's premier agency for Enterprise Web Development, Artificial Intelligence Integration, and Strategic Marketing. We scale businesses."
+        keywords={[
+            "Best Digital Agency Kenya", 
+            "Software Company Nairobi", 
+            "AI Consultants Kenya", 
+            "Corporate Branding Services", 
+            "Web Design Nairobi",
+            "Business Automation Experts"
+        ]}
+        path=""
         type="organization"
       />
 
@@ -219,7 +235,7 @@ const Home: React.FC = () => {
             <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 relative z-10">
                 {['Discovery', 'Strategy', 'Build', 'Launch', 'Scale'].map((step, i) => (
                     <React.Fragment key={step}>
-                        <div className="relative flex flex-col items-center cursor-pointer" onClick={() => setActiveStep(i)}>
+                        <div className="relative flex flex-col items-center cursor-pointer" onClick={() => handleStepClick(i)}>
                              <motion.span 
                                 {...({
                                     animate: { 

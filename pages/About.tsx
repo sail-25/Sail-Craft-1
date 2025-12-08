@@ -6,9 +6,10 @@ const About: React.FC = () => {
   return (
     <div className="bg-white">
       <SEO 
-        title="About SailCraft Solutions | Kenya's Leading Digital Strategists"
-        description="We are growth architects. SailCraft combines strategy, creativity, and technology to build systems that scale businesses."
+        title="About Us"
+        description="We are growth architects. SailCraft combines strategy, creativity, and technology to build systems that scale businesses in Africa."
         keywords={["About SailCraft", "Digital Strategy Kenya", "Tech Visionaries Nairobi", "Business Growth Consultants"]}
+        path="about"
       />
 
       <PageHero
