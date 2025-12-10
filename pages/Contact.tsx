@@ -34,12 +34,47 @@ const Contact: React.FC = () => {
   const inputClasses = "w-full bg-gray-50 border-b-2 border-gray-200 px-4 py-3 text-lg text-sail-darkGreen outline-none transition-all duration-300 focus:bg-white focus:border-sail-orange focus:shadow-lg placeholder:text-gray-400 hover:bg-gray-100 focus:hover:bg-white rounded-t-md";
   const labelClasses = "block text-xs font-bold uppercase tracking-widest text-sail-green mb-2 ml-1";
 
+  // Local Business Schema for Search Maps ranking
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SailCraft Solutions",
+    "image": "https://images.unsplash.com/photo-1423666639041-f142fcb93461?ixlib=rb-4.0.3",
+    "telephone": "+254 704 201 545",
+    "email": "info@sailcraftsolutions.co.ke",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "17:00"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-1.2921", 
+      "longitude": "36.8219"
+    },
+    "url": "https://sailcraftsolutions.co.ke/contact"
+  };
+
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <SEO 
         title="Contact SailCraft Solutions | Nairobi, Kenya"
-        description="Get in touch with SailCraft Solutions. Call +254 704 201 545 or email info@sailcraftsolutions.co.ke for expert digital services."
-        keywords={["Contact Digital Agency", "Nairobi Web Developers Contact", "Hire AI Team Kenya"]}
+        description="Get in touch with SailCraft Solutions for digital transformation. Call +254 704 201 545 or email info@sailcraftsolutions.co.ke. Nairobi based, Globally focused."
+        keywords={["Contact Digital Agency", "Nairobi Web Developers Contact", "Hire AI Team Kenya", "Business Consultants Contact"]}
+        path="contact"
+        schema={localBusinessSchema}
       />
 
       <PageHero

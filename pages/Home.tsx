@@ -38,7 +38,8 @@ const Home: React.FC = () => {
             "AI Consultants Kenya", 
             "Corporate Branding Services", 
             "Web Design Nairobi",
-            "Business Automation Experts"
+            "Business Automation Experts",
+            "Enterprise App Development"
         ]}
         path=""
         type="organization"
@@ -73,7 +74,8 @@ const Home: React.FC = () => {
                             <span className="w-2 h-2 rounded-full bg-sail-orange"></span>
                             #1 Digital Growth Partner
                         </div>
-                        <h1 className="sr-only">SailCraft Solutions - Kenya's Best Digital Agency</h1>
+                        {/* Strong hidden H1 for SEO, Visual DisplayText acts as H1 for users */}
+                        <h1 className="sr-only">SailCraft Solutions - Leading AI & Software Development Agency in Kenya</h1>
                         <DisplayText size="xl" className="text-sail-green relative tracking-tighter">
                             CHARTING<br/>
                             <span className="text-sail-orange">POSSIBILITY</span>

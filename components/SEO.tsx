@@ -32,19 +32,21 @@ export const SEO: React.FC<SEOProps> = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "SailCraft Solutions",
+    "alternateName": "SailCraft",
     "url": siteUrl,
-    "logo": `${siteUrl}/logo.png`,
+    "logo": "https://sailcraftsolutions.co.ke/logo.png",
     "sameAs": [
-      "https://www.linkedin.com/company/sailcraftsolutions",
-      "https://www.instagram.com/sailcraftsolutions",
-      "https://www.facebook.com/sailcraftsolutions"
+      "https://www.linkedin.com/company/sailcraftsolutions", // Update if you have the specific linkedin URL
+      "https://www.instagram.com/info.sailcraft",
+      "https://www.facebook.com/profile.php?id=61578036238909",
+      "https://x.com/sailcraft"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+254 704 201 545",
       "contactType": "customer service",
       "areaServed": "KE",
-      "availableLanguage": "en"
+      "availableLanguage": ["en", "sw"]
     },
     "address": {
       "@type": "PostalAddress",
@@ -78,7 +80,7 @@ export const SEO: React.FC<SEOProps> = ({
       {/* Standard Metadata */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={["Digital Agency Kenya", "Software Development Nairobi", "AI Solutions Kenya", "Business Growth Strategy", ...keywords].join(", ")} />
+      <meta name="keywords" content={["Digital Agency Kenya", "Software Development Nairobi", "AI Solutions Kenya", "Business Growth Strategy", "Web Design Kenya", ...keywords].join(", ")} />
       <link rel="canonical" href={currentUrl} />
 
       {/* Open Graph / Facebook / LinkedIn */}
@@ -88,12 +90,14 @@ export const SEO: React.FC<SEOProps> = ({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="SailCraft Solutions" />
+      <meta property="og:locale" content="en_KE" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:site" content="@sailcraft" />
 
       {/* JSON-LD Structured Data Injection */}
       <script type="application/ld+json">

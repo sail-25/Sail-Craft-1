@@ -49,14 +49,36 @@ const services = [
 ];
 
 const Services: React.FC = () => {
+  // Detailed Service Schema for GEO (AI Recommendations)
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "Service",
+      "position": index + 1,
+      "name": service.title,
+      "description": service.desc,
+      "provider": {
+        "@type": "Organization",
+        "name": "SailCraft Solutions"
+      },
+      "serviceType": service.subServices.join(", "),
+      "areaServed": {
+        "@type": "Country",
+        "name": "Kenya"
+      }
+    }))
+  };
+
   return (
     <div className="bg-white">
       <SEO 
         title="Enterprise Web Development & AI Services"
         description="Comprehensive digital services in Kenya: Custom Software Development, AI Integration, SEO Marketing, and Corporate Branding. View our full service list."
-        keywords={["Web Development Kenya", "AI Consulting Nairobi", "Corporate Branding Services", "SEO Agency Nairobi", "Mobile App Development Kenya"]}
+        keywords={["Web Development Kenya", "AI Consulting Nairobi", "Corporate Branding Services", "SEO Agency Nairobi", "Mobile App Development Kenya", "ERP Systems Kenya"]}
         path="services"
         type="service"
+        schema={serviceSchema}
       />
 
       <PageHero
