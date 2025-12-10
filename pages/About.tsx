@@ -49,30 +49,45 @@ const About: React.FC = () => {
          </div>
       </Section>
 
-      {/* Brand Story Section */}
-      <Section className="bg-sail-green text-white">
-         <div className="max-w-4xl mx-auto">
-            <AnimatedElement>
-                <div className="space-y-12 text-lg md:text-xl leading-relaxed font-medium">
-                    <p>
-                        SailCraft was created to help businesses grow with <span className="text-sail-orange font-bold">clarity and confidence</span>. We saw a gap — brands had ambition, but not the strategy, systems, or support to turn that ambition into real progress. So we built a team designed to change that.
-                    </p>
-                    <p>
-                        We specialize in <span className="text-white font-bold">digital marketing, creative strategy, technology solutions, and operational optimization</span> — the core engines of modern business growth. Our strength is bringing these pieces together into one powerful, practical approach.
-                    </p>
-                    <div className="border-l-4 border-sail-orange pl-8 py-2">
-                        <p className="italic text-white/90">
-                            We believe growth should be measurable, achievable, and tailored to your market. With deep East African insight and a future-focused mindset, we help brands make smarter decisions, deliver better experiences, and scale with intention.
+      {/* Brand Story Section - Image Overlay Redesign */}
+      <div className="relative w-full py-32 md:py-40 overflow-hidden">
+         {/* Background Image */}
+         <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+              alt="Strategic planning session" 
+              className="w-full h-full object-cover fixed-bg"
+            />
+            {/* Heavy Overlays for Contrast */}
+            <div className="absolute inset-0 bg-sail-darkGreen/90 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-black/40"></div>
+         </div>
+
+         {/* Content */}
+         <div className="container mx-auto px-6 md:px-12 relative z-10">
+            <div className="max-w-4xl mx-auto">
+                <AnimatedElement>
+                    <div className="space-y-10 text-lg md:text-2xl leading-relaxed font-medium text-white/95 drop-shadow-sm">
+                        <p>
+                            SailCraft was created to help businesses grow with <span className="text-sail-orange font-bold bg-white/10 px-2 py-0.5 rounded">clarity and confidence</span>. We saw a gap — brands had ambition, but not the strategy, systems, or support to turn that ambition into real progress. So we built a team designed to change that.
+                        </p>
+                        <p>
+                            We specialize in <span className="font-bold border-b-2 border-sail-orange">digital marketing, creative strategy, technology solutions, and operational optimization</span> — the core engines of modern business growth. Our strength is bringing these pieces together into one powerful, practical approach.
+                        </p>
+                        <div className="md:pl-8 md:border-l-4 border-sail-orange py-2 my-8">
+                            <p className="italic text-white/90">
+                                We believe growth should be measurable, achievable, and tailored to your market. With deep East African insight and a future-focused mindset, we help brands make smarter decisions, deliver better experiences, and scale with intention.
+                            </p>
+                        </div>
+                        <p className="text-3xl md:text-5xl font-heading font-bold text-white pt-6 leading-tight">
+                            At SailCraft, we don’t just help you grow.<br/>
+                            <span className="text-sail-orange">We help you move forward with purpose.</span>
                         </p>
                     </div>
-                    <p className="text-2xl md:text-3xl font-heading font-bold text-white pt-8">
-                        At SailCraft, we don’t just help you grow.<br/>
-                        <span className="text-sail-orange">We help you move forward with purpose.</span>
-                    </p>
-                </div>
-            </AnimatedElement>
+                </AnimatedElement>
+            </div>
          </div>
-      </Section>
+      </div>
 
       {/* Values - Brutalist Box Grid */}
       <Section className="bg-white py-24">
