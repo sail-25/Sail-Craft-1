@@ -49,8 +49,8 @@ const About: React.FC = () => {
          </div>
       </Section>
 
-      {/* Brand Story Section - Redesigned: Dark Overlay for High Contrast */}
-      <Section id="our-story" className="relative py-24 md:py-32 overflow-hidden" fullWidth>
+      {/* Brand Story Section - Redesigned: Balanced Spacing */}
+      <Section id="our-story" className="relative py-20 md:py-24 overflow-hidden" fullWidth>
          {/* Background Image with Deep Overlay */}
          <div className="absolute inset-0 z-0">
             <img
@@ -67,7 +67,7 @@ const About: React.FC = () => {
              <AnimatedElement>
                 <div className="max-w-5xl mx-auto">
                     {/* Header */}
-                    <div className="mb-12">
+                    <div className="mb-10">
                          <span className="inline-block py-1 px-4 rounded-full bg-sail-orange/10 text-sail-orange border border-sail-orange/20 font-bold tracking-widest uppercase text-xs mb-6 backdrop-blur-md">
                             Our Story
                          </span>
