@@ -50,7 +50,7 @@ const About: React.FC = () => {
       </Section>
 
       {/* Brand Story Section - Redesigned: Dark Overlay for High Contrast */}
-      <Section className="relative py-24 md:py-32 overflow-hidden" fullWidth>
+      <Section className="relative py-32 md:py-56 overflow-hidden" fullWidth>
          {/* Background Image with Deep Overlay */}
          <div className="absolute inset-0 z-0">
             <img
