@@ -50,7 +50,7 @@ const About: React.FC = () => {
       </Section>
 
       {/* Brand Story Section - Redesigned: Dark Overlay for High Contrast */}
-      <Section id="our-story" className="relative py-40 md:py-64 overflow-hidden" fullWidth>
+      <Section id="our-story" className="relative py-24 md:py-32 overflow-hidden" fullWidth>
          {/* Background Image with Deep Overlay */}
          <div className="absolute inset-0 z-0">
             <img
@@ -63,7 +63,7 @@ const About: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-sail-darkGreen via-transparent to-sail-darkGreen/50"></div>
          </div>
 
-         <div className="container mx-auto px-8 md:px-24 relative z-10">
+         <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
              <AnimatedElement>
                 <div className="max-w-5xl mx-auto">
                     {/* Header */}
