@@ -49,22 +49,30 @@ const About: React.FC = () => {
          </div>
       </Section>
 
-      {/* Team Image Split */}
-      <div className="w-full h-[60vh] relative overflow-hidden">
-         <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" 
-            className="w-full h-full object-cover fixed-bg grayscale" 
-            alt="Collaborative Team Meeting"
-         />
-         <div className="absolute inset-0 bg-sail-green/80 mix-blend-multiply"></div>
-         <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white/10 backdrop-blur-md p-8 md:p-12 border border-white/20 max-w-4xl mx-4 text-center">
-                <h2 className="text-4xl md:text-6xl text-white font-heading font-bold tracking-tight">
-                    Built on Trust.<br/>Driven by Data.
-                </h2>
-            </div>
+      {/* Brand Story Section */}
+      <Section className="bg-sail-green text-white">
+         <div className="max-w-4xl mx-auto">
+            <AnimatedElement>
+                <div className="space-y-12 text-lg md:text-xl leading-relaxed font-medium">
+                    <p>
+                        SailCraft was created to help businesses grow with <span className="text-sail-orange font-bold">clarity and confidence</span>. We saw a gap — brands had ambition, but not the strategy, systems, or support to turn that ambition into real progress. So we built a team designed to change that.
+                    </p>
+                    <p>
+                        We specialize in <span className="text-white font-bold">digital marketing, creative strategy, technology solutions, and operational optimization</span> — the core engines of modern business growth. Our strength is bringing these pieces together into one powerful, practical approach.
+                    </p>
+                    <div className="border-l-4 border-sail-orange pl-8 py-2">
+                        <p className="italic text-white/90">
+                            We believe growth should be measurable, achievable, and tailored to your market. With deep East African insight and a future-focused mindset, we help brands make smarter decisions, deliver better experiences, and scale with intention.
+                        </p>
+                    </div>
+                    <p className="text-2xl md:text-3xl font-heading font-bold text-white pt-8">
+                        At SailCraft, we don’t just help you grow.<br/>
+                        <span className="text-sail-orange">We help you move forward with purpose.</span>
+                    </p>
+                </div>
+            </AnimatedElement>
          </div>
-      </div>
+      </Section>
 
       {/* Values - Brutalist Box Grid */}
       <Section className="bg-white py-24">
