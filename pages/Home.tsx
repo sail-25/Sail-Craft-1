@@ -97,25 +97,27 @@ const Home: React.FC = () => {
             {/* Hero Visual Grid */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-8">
                 <AnimatedElement delay={0.2} className="md:col-span-8 relative group h-[400px] md:h-[500px] overflow-hidden rounded-lg">
-                    <div className="absolute inset-0 bg-sail-green/20 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
-                    <Parallax offset={30} className="h-full">
-                        <img 
-                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2301&q=80" 
-                            className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 -mt-[10%]"
-                            alt="Corporate architecture interior showing enterprise scale"
-                        />
-                    </Parallax>
-                    <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-white/90 backdrop-blur-sm border-t border-black/5">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sail-green font-heading text-2xl font-bold">Future Forward</p>
-                                <p className="text-slate-500 text-sm uppercase tracking-widest">Strategic Vision</p>
-                            </div>
-                            <div className="w-12 h-12 bg-sail-orange text-white flex items-center justify-center rounded-full">
-                                <ArrowRight size={20} />
+                    <Link to="/about#our-story" className="block w-full h-full relative cursor-pointer">
+                        <div className="absolute inset-0 bg-sail-green/20 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
+                        <Parallax offset={30} className="h-full">
+                            <img 
+                                src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2301&q=80" 
+                                className="w-full h-[120%] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 -mt-[10%]"
+                                alt="Corporate architecture interior showing enterprise scale"
+                            />
+                        </Parallax>
+                        <div className="absolute bottom-0 left-0 p-8 z-20 w-full bg-white/90 backdrop-blur-sm border-t border-black/5">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sail-green font-heading text-2xl font-bold">Future Forward</p>
+                                    <p className="text-slate-500 text-sm uppercase tracking-widest">Strategic Vision</p>
+                                </div>
+                                <div className="w-12 h-12 bg-sail-orange text-white flex items-center justify-center rounded-full group-hover:scale-110 transition-transform">
+                                    <ArrowRight size={20} />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </AnimatedElement>
                 
                 <AnimatedElement delay={0.3} className="md:col-span-4 flex flex-col gap-6 h-[400px] md:h-[500px]">
@@ -123,12 +125,12 @@ const Home: React.FC = () => {
                          <div className="absolute top-0 right-0 w-32 h-32 bg-sail-orange/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-sail-orange/30 transition-colors duration-500 animate-pulse"></div>
                          <Zap size={40} className="text-sail-orange mb-4 relative z-10" />
                          <div className="relative z-10">
-                             <h3 className="text-6xl font-heading font-bold mb-2">200%</h3>
+                             <h3 className="text-6xl font-heading font-bold mb-2">80%</h3>
                              <p className="text-white/80 font-bold uppercase tracking-wide text-sm">Average client growth</p>
                          </div>
                     </div>
                     <div className="flex-1 bg-white p-8 border border-black/10 flex flex-col justify-center hover:border-sail-orange transition-colors rounded-lg shadow-sm">
-                         <h3 className="text-6xl font-heading text-sail-green mb-2 font-bold">50+</h3>
+                         <h3 className="text-6xl font-heading text-sail-green mb-2 font-bold">34+</h3>
                          <p className="text-slate-500 font-bold uppercase tracking-wide text-sm">Enterprise Projects</p>
                     </div>
                 </AnimatedElement>
@@ -194,7 +196,7 @@ const Home: React.FC = () => {
                   <div className="space-y-0 border-t border-black/10">
                       {[
                           { title: "Strategic Depth", desc: "We understand the nuances of complex business environments." },
-                          { title: "Global Standards", desc: "World-class code quality and design aesthetics." },
+                          { title: "Global Standards", desc: "World-class quality, clarity, and creativity in everything we deliver." },
                           { title: "Revenue Focus", desc: "We don't care about vanity metrics. We care about your bottom line." }
                       ].map((item, i) => (
                           <div key={i} className="flex flex-col py-8 border-b border-black/10 group hover:bg-gray-50 transition-colors px-4 -mx-4">
