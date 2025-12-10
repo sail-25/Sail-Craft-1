@@ -49,63 +49,61 @@ const About: React.FC = () => {
          </div>
       </Section>
 
-      {/* Brand Story Section - Redesigned for High Contrast */}
-      <Section className="bg-white py-24 md:py-32 relative z-10 overflow-hidden">
-         <div className="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
-            {/* Visual Side */}
-            <div className="md:col-span-5 relative order-2 md:order-1">
-                <AnimatedElement>
-                     <div className="relative rounded-2xl overflow-hidden aspect-[3/4] md:aspect-[4/5] shadow-2xl shadow-sail-green/10 z-10 group">
-                        <img 
-                          src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                          alt="Strategic planning session at SailCraft" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-sail-green/5 mix-blend-multiply"></div>
-                     </div>
-                     {/* Decorative blobs */}
-                     <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-sail-orange/20 rounded-full mix-blend-multiply blur-2xl -z-10"></div>
-                     <div className="absolute -top-10 -left-10 w-40 h-40 bg-sail-green/20 rounded-full mix-blend-multiply blur-2xl -z-10"></div>
-                </AnimatedElement>
-            </div>
+      {/* Brand Story Section - Redesigned: Dark Overlay for High Contrast */}
+      <Section className="relative py-24 md:py-32 overflow-hidden" fullWidth>
+         {/* Background Image with Deep Overlay */}
+         <div className="absolute inset-0 z-0">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Strategic planning session at SailCraft"
+              className="w-full h-full object-cover"
+            />
+            {/* Dark Sail Green Overlay - High Opacity (90%) for Max Readability */}
+            <div className="absolute inset-0 bg-sail-darkGreen/90 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-sail-darkGreen via-transparent to-sail-darkGreen/50"></div>
+         </div>
 
-            {/* Text Side */}
-            <div className="md:col-span-7 order-1 md:order-2">
-                <AnimatedElement delay={0.2}>
-                    <div className="space-y-8">
-                        <div>
-                             <span className="inline-block py-1 px-3 rounded-full bg-sail-offWhite text-sail-orange font-bold tracking-widest uppercase text-xs mb-4 border border-sail-green/5">
-                                Our Story
-                             </span>
-                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-sail-green mb-6 leading-[1.05]">
-                                Building with <span className="text-sail-orange">Purpose</span>
-                             </h2>
-                        </div>
-                        
-                        <div className="space-y-6 text-lg text-slate-600 leading-relaxed font-medium">
+         <div className="container mx-auto px-6 md:px-12 relative z-10">
+             <AnimatedElement>
+                <div className="max-w-5xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-12">
+                         <span className="inline-block py-1 px-4 rounded-full bg-sail-orange/10 text-sail-orange border border-sail-orange/20 font-bold tracking-widest uppercase text-xs mb-6 backdrop-blur-md">
+                            Our Story
+                         </span>
+                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-[1.05]">
+                            Building with <span className="text-sail-orange">Purpose</span>
+                         </h2>
+                    </div>
+                    
+                    {/* Content Columns */}
+                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 text-lg leading-relaxed font-medium">
+                        <div className="text-gray-200 space-y-6">
                             <p>
-                                SailCraft was created to help businesses grow with <span className="text-sail-green font-bold bg-sail-green/5 px-1 rounded">clarity and confidence</span>. We saw a gap — brands had ambition, but not the strategy, systems, or support to turn that ambition into real progress. So we built a team designed to change that.
+                                SailCraft was created to help businesses grow with <span className="text-white font-bold border-b-2 border-sail-orange">clarity and confidence</span>. We saw a gap — brands had ambition, but not the strategy, systems, or support to turn that ambition into real progress.
                             </p>
                             <p>
-                                We specialize in <span className="font-bold text-sail-green border-b-2 border-sail-orange/20">digital marketing, creative strategy, technology solutions, and operational optimization</span> — the core engines of modern business growth. Our strength is bringing these pieces together into one powerful, practical approach.
+                                So we built a team designed to change that. We specialize in digital marketing, creative strategy, and technology solutions — bringing these pieces together into one powerful, practical approach.
                             </p>
                         </div>
 
-                        <div className="pl-6 border-l-4 border-sail-orange py-1 my-8">
-                            <p className="italic text-sail-green font-medium text-lg md:text-xl leading-relaxed">
-                                "We believe growth should be measurable, achievable, and tailored to your market. With deep East African insight and a future-focused mindset, we help brands make smarter decisions."
-                            </p>
-                        </div>
+                        <div className="space-y-8">
+                            <div className="pl-6 border-l-4 border-sail-orange">
+                                <p className="italic text-white text-xl leading-relaxed">
+                                    "We believe growth should be measurable, achievable, and tailored to your market. With deep East African insight, we help brands make smarter decisions."
+                                </p>
+                            </div>
 
-                        <div className="pt-2">
-                            <p className="text-2xl md:text-3xl font-heading font-bold text-sail-green leading-tight">
-                                At SailCraft, we don’t just help you grow.<br/>
-                                <span className="text-slate-400">We help you move forward.</span>
-                            </p>
+                            <div className="pt-2">
+                                <p className="text-2xl md:text-3xl font-heading font-bold text-white leading-tight">
+                                    At SailCraft, we don’t just help you grow.<br/>
+                                    <span className="text-sail-orange">We help you move forward.</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </AnimatedElement>
-            </div>
+                </div>
+             </AnimatedElement>
          </div>
       </Section>
 
