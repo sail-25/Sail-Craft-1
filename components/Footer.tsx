@@ -1,9 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Instagram, Facebook, Youtube, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Twitter, ArrowUpRight } from 'lucide-react';
 import { BrandLogo } from './UI';
 
 const Footer: React.FC = () => {
+  const socialLinks = [
+    { 
+      Icon: Linkedin, 
+      href: "#", // Placeholder as it is standard for agencies
+      label: "LinkedIn" 
+    },
+    { 
+      Icon: Instagram, 
+      href: "https://www.instagram.com/info.sailcraft", 
+      label: "Instagram" 
+    },
+    { 
+      Icon: Facebook, 
+      href: "https://www.facebook.com/profile.php?id=61578036238909", 
+      label: "Facebook" 
+    },
+    { 
+      Icon: Twitter, 
+      href: "https://x.com/sailcraft", 
+      label: "X (Twitter)" 
+    }
+  ];
+
   return (
     <footer className="bg-white border-t border-sail-green/10 pt-24 pb-12 overflow-hidden relative text-sail-green">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -20,8 +43,15 @@ const Footer: React.FC = () => {
                     We fuel your growth story with strategy, creativity, and intelligent technology.
                 </p>
                 <div className="flex gap-4">
-                    {[Linkedin, Instagram, Facebook, Youtube].map((Icon, i) => (
-                        <a key={i} href="#" className="w-10 h-10 rounded-lg border border-sail-green/20 flex items-center justify-center hover:bg-sail-orange hover:text-white hover:border-sail-orange transition-all">
+                    {socialLinks.map(({ Icon, href, label }, i) => (
+                        <a 
+                            key={i} 
+                            href={href} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            aria-label={label}
+                            className="w-10 h-10 rounded-lg border border-sail-green/20 flex items-center justify-center hover:bg-sail-orange hover:text-white hover:border-sail-orange transition-all"
+                        >
                             <Icon size={18} />
                         </a>
                     ))}
