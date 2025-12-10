@@ -19,6 +19,7 @@ export const BrandLogo: React.FC<{ className?: string }> = ({ className = "" }) 
     fill="none" 
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
+    preserveAspectRatio="none"
   >
     <path 
       d="M206.5 0C92.4562 0 0 92.4562 0 206.5V433H206.5V0Z" 

@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
             {/* Brand Column */}
             <div className="max-w-sm">
                 <div className="flex items-center gap-2 mb-8 group">
-                    <div className="w-8 h-8 flex-shrink-0 text-sail-green group-hover:text-sail-orange transition-colors duration-300">
+                    <div className="w-8 h-6 flex-shrink-0 text-sail-green group-hover:text-sail-orange transition-colors duration-300">
                         <BrandLogo className="w-full h-full" />
                     </div>
                     <span className="text-2xl font-bold font-heading">SailCraft Solutions</span>
