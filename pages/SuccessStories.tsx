@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Section, AnimatedElement, Button, DisplayText, PageHero, AccordionItem } from '../components/UI';
-import { Trophy, Target, Zap, ArrowRight } from 'lucide-react';
+import { Trophy, Target, Zap, ArrowRight, RefreshCcw } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 const cases = [
@@ -55,9 +55,39 @@ const SuccessStories: React.FC = () => {
         }
       />
 
-      <Section className="min-h-screen">
-        <div className="max-w-6xl mx-auto">
-            <div className="mb-12 border-t border-gray-200">
+      <Section className="min-h-screen relative">
+        <div className="max-w-6xl mx-auto relative">
+            
+            {/* Glassmorphism Overlay */}
+            <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
+                <AnimatedElement className="w-full max-w-xl">
+                    <div className="bg-white/70 backdrop-blur-xl border border-sail-orange/20 shadow-2xl shadow-sail-orange/10 p-10 md:p-14 rounded-2xl text-center relative overflow-hidden">
+                        {/* Decorative background glow */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-sail-orange/10 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-sail-green/10 rounded-full blur-3xl -ml-10 -mb-10"></div>
+                        
+                        <div className="relative z-10">
+                            <div className="w-20 h-20 mx-auto bg-sail-orange/10 rounded-full flex items-center justify-center text-sail-orange mb-8 shadow-inner ring-1 ring-sail-orange/20">
+                                <RefreshCcw size={32} className="animate-[spin_4s_linear_infinite]" />
+                            </div>
+                            
+                            <h3 className="text-3xl md:text-4xl font-heading font-bold text-sail-orange mb-6">
+                                Recollating Portfolio
+                            </h3>
+                            
+                            <p className="text-slate-600 text-lg md:text-xl font-medium leading-relaxed mb-2">
+                                We are currently updating our project archives.
+                            </p>
+                            <p className="text-slate-500 text-base leading-relaxed">
+                                Our updated work file and new case studies will be live shortly.
+                            </p>
+                        </div>
+                    </div>
+                </AnimatedElement>
+            </div>
+
+            {/* Blurred Content */}
+            <div className="mb-12 border-t border-gray-200 filter blur-sm opacity-40 pointer-events-none select-none grayscale-[0.5]">
                 {cases.map((item, index) => (
                     <AccordionItem
                         key={item.id}
