@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -39,7 +39,7 @@ const App: React.FC = () => {
 
   return (
     <HelmetProvider context={helmetContext}>
-      <HashRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden">
           <Navigation />
@@ -55,7 +55,7 @@ const App: React.FC = () => {
           </main>
           <Footer />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </HelmetProvider>
   );
 };

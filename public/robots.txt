@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sailcraftsolutions.co.ke/sitemap.xml
