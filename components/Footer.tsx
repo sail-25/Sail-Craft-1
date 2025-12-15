@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     { 
       Icon: Linkedin, 
-      href: "#", // Placeholder as it is standard for agencies
+      href: "https://www.linkedin.com/company/sailcraft-solutions", 
       label: "LinkedIn" 
     },
     { 
