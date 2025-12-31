@@ -81,9 +81,6 @@ const WorkWithUs: React.FC = () => {
           <p className="text-xl text-slate-600 max-w-2xl mb-8 font-medium leading-relaxed">
             We don't just take orders; we build partnerships. We excel when working with leaders ready to redefine their market space through technology and strategy.
           </p>
-          <Button to="/contact" variant="primary">
-            Start a Conversation
-          </Button>
       </PageHero>
 
       {/* Profiles Section - Who We Work With */}
@@ -130,13 +127,14 @@ const WorkWithUs: React.FC = () => {
             {processSteps.map((step, index) => (
                 <AnimatedElement key={step.id} delay={index * 0.1} className="h-full">
                     <div className="h-full bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-sail-orange/20 transition-all duration-500 overflow-hidden group flex flex-col">
+                        {/* Progress bar in brand orange */}
                         <div className="w-full h-1.5 bg-slate-50 relative overflow-hidden">
                             <motion.div 
                                 initial={{ width: 0 }}
                                 whileInView={{ width: "100%" }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 1.5, delay: 0.2 + (index * 0.1), ease: "circOut" }}
-                                className="h-full bg-sail-green group-hover:bg-sail-orange transition-colors duration-500"
+                                className="h-full bg-sail-orange"
                             />
                         </div>
 
