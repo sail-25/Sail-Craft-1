@@ -1,9 +1,29 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useInView, animate } from 'framer-motion';
 import { Section, AnimatedElement, Button, DisplayText, Card, Parallax } from '../components/UI';
 import { ArrowRight, Zap, Play, Megaphone, Monitor, Bot, PenTool } from 'lucide-react';
 import { SEO } from '../components/SEO';
+
+const CountUp: React.FC<{ value: number; suffix?: string }> = ({ value, suffix = "" }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(0, value, {
+        duration: 2,
+        ease: "easeOut",
+        onUpdate: (latest) => setDisplayValue(Math.floor(latest)),
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, value]);
+
+  return <span ref={ref}>{displayValue}{suffix}</span>;
+};
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
@@ -125,12 +145,16 @@ const Home: React.FC = () => {
                          <div className="absolute top-0 right-0 w-32 h-32 bg-sail-orange/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-sail-orange/30 transition-colors duration-500 animate-pulse"></div>
                          <Zap size={40} className="text-sail-orange mb-4 relative z-10" />
                          <div className="relative z-10">
-                             <h3 className="text-6xl font-heading font-bold mb-2">80%</h3>
+                             <h3 className="text-6xl font-heading font-bold mb-2">
+                                <CountUp value={80} suffix="%" />
+                             </h3>
                              <p className="text-white/80 font-bold uppercase tracking-wide text-sm">Average client growth</p>
                          </div>
                     </div>
                     <div className="flex-1 bg-white p-8 border border-black/10 flex flex-col justify-center hover:border-sail-orange transition-colors rounded-lg shadow-sm">
-                         <h3 className="text-6xl font-heading text-sail-green mb-2 font-bold">34+</h3>
+                         <h3 className="text-6xl font-heading text-sail-green mb-2 font-bold">
+                            <CountUp value={34} suffix="+" />
+                         </h3>
                          <p className="text-slate-500 font-bold uppercase tracking-wide text-sm">Enterprise Projects</p>
                     </div>
                 </AnimatedElement>

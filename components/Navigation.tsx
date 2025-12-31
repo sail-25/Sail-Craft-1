@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -24,7 +25,8 @@ const Navigation: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Work', path: '/success-stories' },
+    { name: 'Success Stories', path: '/success-stories' },
+    { name: 'Work With Us', path: '/work-with-us' },
   ];
 
   return (
@@ -43,7 +45,7 @@ const Navigation: React.FC = () => {
               <div className="w-8 h-6 flex-shrink-0 text-sail-green group-hover:rotate-12 transition-transform duration-300">
                  <BrandLogo className="w-full h-full" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-sail-green font-heading hidden sm:block">
+              <span className="text-xl font-bold tracking-tight text-sail-green font-heading hidden lg:block">
                 SailCraft Solutions
               </span>
             </Link>
@@ -54,7 +56,7 @@ const Navigation: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-5 py-2 text-sm font-bold rounded-lg transition-all duration-300 ${
+                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap ${
                     location.pathname === link.path 
                       ? 'bg-white text-sail-green shadow-sm' 
                       : 'text-slate-500 hover:text-sail-green hover:bg-white/50'
@@ -66,10 +68,10 @@ const Navigation: React.FC = () => {
             </nav>
 
             <div className="hidden md:flex items-center gap-4 min-w-fit">
-                <Link to="/contact" className="text-sm font-bold text-sail-green hover:text-sail-orange transition-colors">
+                <Link to="/contact" className="text-xs font-bold text-sail-green hover:text-sail-orange transition-colors">
                     Contact
                 </Link>
-                <Button to="/work-with-us" variant="primary" className="!px-5 !py-2.5 !text-xs !rounded-lg shadow-none hover:shadow-lg">
+                <Button to="/work-with-us" variant="primary" className="!px-5 !py-2.5 !text-[10px] !rounded-lg shadow-none hover:shadow-lg">
                 Start Project
                 </Button>
             </div>
@@ -87,7 +89,7 @@ const Navigation: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
+        className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-6 transition-all duration-500 ${
           isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         }`}
       >
@@ -95,13 +97,13 @@ const Navigation: React.FC = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="text-4xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading"
+              className="text-3xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading text-center"
             >
               {link.name}
             </Link>
           ))}
-          <Link to="/contact" className="text-4xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading">Contact</Link>
-          <Button to="/work-with-us" variant="primary" className="mt-8 !text-xl !px-10 !py-4">
+          <Link to="/contact" className="text-3xl font-bold text-sail-green hover:text-sail-orange transition-colors font-heading">Contact</Link>
+          <Button to="/work-with-us" variant="primary" className="mt-4 !text-xl !px-10 !py-4">
             Start Project
           </Button>
       </div>

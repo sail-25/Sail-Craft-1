@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -156,7 +157,7 @@ export const PageHero: React.FC<{
         </div>
       </div>
       
-      <div className="container mx-auto px-6 md:px-8 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <AnimatedElement>
           {subtitle && (
               <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 text-xs font-bold tracking-widest text-sail-orange uppercase bg-sail-orange/10 rounded-full border border-sail-orange/20">

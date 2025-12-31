@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -9,6 +10,7 @@ import Services from './pages/Services';
 import SuccessStories from './pages/SuccessStories';
 import WorkWithUs from './pages/WorkWithUs';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 // Scroll to top on route change, handling hash links for anchors
 const ScrollToTop = () => {
@@ -51,6 +53,8 @@ const App: React.FC = () => {
               <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/work-with-us" element={<WorkWithUs />} />
               <Route path="/contact" element={<Contact />} />
+              {/* Catch-all route for 404 Not Found */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />
