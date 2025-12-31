@@ -1,16 +1,31 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import SuccessStories from './pages/SuccessStories';
-import WorkWithUs from './pages/WorkWithUs';
-import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
+
+// Lazy load page components for better performance
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const SuccessStories = lazy(() => import('./pages/SuccessStories'));
+const WorkWithUs = lazy(() => import('./pages/WorkWithUs'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+/**
+ * A minimal, high-performance loading state that respects 
+ * the site's aesthetic without causing significant layout shift.
+ */
+const LoadingState = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center bg-white">
+    <div className="w-12 h-12 border-4 border-sail-orange/20 border-t-sail-orange rounded-full animate-spin"></div>
+    <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.3em] text-sail-green opacity-50">
+      Optimizing Experience
+    </p>
+  </div>
+);
 
 // Scroll to top on route change, handling hash links for anchors
 const ScrollToTop = () => {
@@ -46,16 +61,18 @@ const App: React.FC = () => {
         <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800 overflow-x-hidden">
           <Navigation />
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/success-stories" element={<SuccessStories />} />
-              <Route path="/work-with-us" element={<WorkWithUs />} />
-              <Route path="/contact" element={<Contact />} />
-              {/* Catch-all route for 404 Not Found */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={<LoadingState />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/success-stories" element={<SuccessStories />} />
+                <Route path="/work-with-us" element={<WorkWithUs />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* Catch-all route for 404 Not Found */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>
